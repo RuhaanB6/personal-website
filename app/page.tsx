@@ -4,9 +4,9 @@ import Taskbar from "@/components/Taskbar";
 
 export default function Home() {
   return (
-    <main className="-screen w-full flex items-center justify-center p-4 bg-black overflow-hidden select-none">
+    <main className="h-screen w-full flex items-center justify-center p-4 bg-black overflow-hidden select-none">
       {/* CRT Monitor Bezel */}
-      <div className="relative w-full h-full max-w-[1400px] max-h-[850px] aspect-video bg-[#1a1a1a] rounded-[2rem] p-6 shadow-[0_0_100px_rgba(0,0,0,0.8),inset_0_0_20px_rgba(0,0,0,0.9)] flex items-center justify-center border-t-2 border-white/5 border-l-2">
+      <div className="relative w-full h-full aspect-video bg-[#1a1a1a] rounded-[2rem] p-6 shadow-[0_0_100px_rgba(0,0,0,0.8),inset_0_0_20px_rgba(0,0,0,0.9)] flex items-center justify-center border-t-2 border-white/5 border-l-2">
         
         {/* Screen Area */}
         <div className="relative w-full h-full bg-black rounded-xl overflow-hidden screen-glow border-[12px] border-[#121212] shadow-[inset_0_0_40px_rgba(0,255,136,0.1)] flex flex-col">

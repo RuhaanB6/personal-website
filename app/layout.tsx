@@ -9,7 +9,7 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: "RUHAAN_OS | Portfolio",
-  description: "Personal portfolio in a dark retro-futurist style.",
+  description: "Ruhaan's Personal portfolio.",
 };
 
 export default function RootLayout({

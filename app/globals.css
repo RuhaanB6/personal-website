@@ -7,13 +7,15 @@
   --color-bezel: #1a1a1a;
 }
 
-html {
+html,
+body {
   height: 100%;
+  overflow: hidden;
 }
 
 :root {
   --background: #000000;
-  --foreground: #00ff88;
+  --foreground: #ff0077;
 }
 
 body {
