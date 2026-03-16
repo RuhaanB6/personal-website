@@ -19,7 +19,7 @@ export default function BlackHole() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    let animationId: number;
+    let animationId: number = 0;
     let rotation = 0;
 
     const resize = () => {
@@ -36,10 +36,9 @@ export default function BlackHole() {
       size: Math.random() * 1.0 + 0.2,
     }));
 
-    // Particles kept tight to disk radii
     const particles: Particle[] = Array.from({ length: 80 }, () => ({
       angle: Math.random() * Math.PI * 2,
-      radius: Math.random() * 100 + 80, // tight band: 80–180px only
+      radius: Math.random() * 100 + 80,
       speed: Math.random() * 0.004 + 0.002,
       size: Math.random() * 1.0 + 0.3,
       opacity: Math.random() * 0.5 + 0.2,
@@ -51,7 +50,10 @@ export default function BlackHole() {
       const cx = w / 2;
       const cy = h / 2;
 
-      // Background
+      const TILT = 0.18;
+      const diskAngleBase = 0.05;
+
+      // 1. BACKGROUND
       const bgGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, Math.max(w, h) * 0.8);
       bgGrad.addColorStop(0, "#06060f");
       bgGrad.addColorStop(0.5, "#030308");
@@ -59,7 +61,7 @@ export default function BlackHole() {
       ctx.fillStyle = bgGrad;
       ctx.fillRect(0, 0, w, h);
 
-      // Stars
+      // 2. STARS
       stars.forEach((star) => {
         ctx.beginPath();
         ctx.arc(star.x * w, star.y * h, star.size, 0, Math.PI * 2);
@@ -67,11 +69,18 @@ export default function BlackHole() {
         ctx.fill();
       });
 
-      // Disk tilt — very slight, close to horizontal
-      const TILT = 0.18;
-      const diskAngleBase = 0.05;
+      // 3. OUTER GLOW
+      const outerGlow = ctx.createRadialGradient(cx, cy, 80, cx, cy, 380);
+      outerGlow.addColorStop(0, "rgba(255, 140, 30, 0.0)");
+      outerGlow.addColorStop(0.35, "rgba(255, 100, 15, 0.08)");
+      outerGlow.addColorStop(0.65, "rgba(180, 60, 0, 0.04)");
+      outerGlow.addColorStop(1, "rgba(0, 0, 0, 0)");
+      ctx.beginPath();
+      ctx.arc(cx, cy, 380, 0, Math.PI * 2);
+      ctx.fillStyle = outerGlow;
+      ctx.fill();
 
-      // --- BACK DISK ---
+      // 4. BACK DISK
       for (let i = 55; i >= 0; i--) {
         const t = i / 55;
         const xr = 90 + t * 190;
@@ -93,8 +102,7 @@ export default function BlackHole() {
         ctx.stroke();
       }
 
-      // --- LENSING HUMP ---
-      // Bright arc of lensed light bending over the top of the singularity
+      // 5. LENSING HUMP
       for (let i = 0; i < 14; i++) {
         const t = i / 14;
         const a = (1 - t) * 0.22;
@@ -105,14 +113,14 @@ export default function BlackHole() {
         ctx.stroke();
       }
 
-      // Bright highlight on the lensing hump
+      // Bright lensing highlight
       ctx.beginPath();
       ctx.ellipse(cx, cy - 62, 40, 7, 0, Math.PI * 1.15, Math.PI * 1.85);
       ctx.strokeStyle = "rgba(255, 230, 150, 0.65)";
       ctx.lineWidth = 2;
       ctx.stroke();
 
-      // --- SINGULARITY SHADOW ---
+      // 6. SINGULARITY SHADOW
       const shadowGrad = ctx.createRadialGradient(cx, cy, 48, cx, cy, 115);
       shadowGrad.addColorStop(0, "rgba(0,0,0,1)");
       shadowGrad.addColorStop(0.55, "rgba(0,0,0,1)");
@@ -122,8 +130,7 @@ export default function BlackHole() {
       ctx.fillStyle = shadowGrad;
       ctx.fill();
 
-      // --- PHOTON RING ---
-      // Thin, tight, bright — hugs the event horizon
+      // 7. PHOTON RING
       const photonGrad = ctx.createRadialGradient(cx, cy, 60, cx, cy, 78);
       photonGrad.addColorStop(0, "rgba(0,0,0,0)");
       photonGrad.addColorStop(0.5, "rgba(255, 200, 80, 0.3)");
@@ -134,14 +141,33 @@ export default function BlackHole() {
       ctx.fillStyle = photonGrad;
       ctx.fill();
 
-      // Single crisp photon ring line
       ctx.beginPath();
       ctx.arc(cx, cy, 68, 0, Math.PI * 2);
       ctx.strokeStyle = "rgba(255, 235, 150, 0.6)";
       ctx.lineWidth = 1;
       ctx.stroke();
 
-      // --- FRONT DISK ---
+      // 8. PARTICLES — clipped to disk band
+      ctx.save();
+      ctx.beginPath();
+      ctx.ellipse(cx, cy, 290, 80, diskAngleBase, 0, Math.PI * 2);
+      ctx.clip();
+
+      particles.forEach((p) => {
+        p.angle += p.speed * (1 + (180 - p.radius) / 180);
+        const px = cx + Math.cos(p.angle) * p.radius;
+        const py = cy + Math.sin(p.angle) * (p.radius * 0.22);
+        if (Math.sin(p.angle) > -0.2) {
+          ctx.beginPath();
+          ctx.arc(px, py, p.size, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(255, 215, 120, ${p.opacity})`;
+          ctx.fill();
+        }
+      });
+
+      ctx.restore();
+
+      // 9. FRONT DISK — drawn after shadow + photon ring
       for (let i = 55; i >= 0; i--) {
         const t = i / 55;
         const xr = 90 + t * 190;
@@ -163,36 +189,14 @@ export default function BlackHole() {
         ctx.stroke();
       }
 
-      // --- PARTICLES — clipped to disk band only ---
-      ctx.save();
-      // Clip to an elliptical band around the disk so no stray pixels escape
+      // 10. HARD BLACK CORE — top half only, so front disk shows through bottom
       ctx.beginPath();
-      ctx.ellipse(cx, cy, 290, 80, diskAngleBase, 0, Math.PI * 2);
-      ctx.clip();
-
-      particles.forEach((p) => {
-        p.angle += p.speed * (1 + (180 - p.radius) / 180);
-        const px = cx + Math.cos(p.angle) * p.radius;
-        const py = cy + Math.sin(p.angle) * (p.radius * 0.22);
-        if (Math.sin(p.angle) > -0.2) {
-          ctx.beginPath();
-          ctx.arc(px, py, p.size, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(255, 215, 120, ${p.opacity})`;
-          ctx.fill();
-        }
-        
-      });
-
-      ctx.restore();
-
-      // --- HARD BLACK CORE ---
-      ctx.beginPath();
-      ctx.arc(cx, cy, 60, 0, Math.PI * 2);
+      ctx.arc(cx, cy, 60, Math.PI, Math.PI * 2); // top semicircle only
       ctx.fillStyle = "#000000";
       ctx.fill();
-
       rotation += 0.0007;
       animationId = requestAnimationFrame(draw);
+
     };
 
     draw();
