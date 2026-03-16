@@ -1,7 +1,14 @@
+"use client";
+
+import dynamic from "next/dynamic";
 import Catalogue from "@/components/Catalogue";
 import Terminal from "@/components/Terminal";
 import TopStrip from "@/components/TopStrip";
 import BottomStrip from "@/components/BottomStrip";
+
+const BlackHole = dynamic(() => import("@/components/BlackHole"), {
+  ssr: false,
+});
 
 export default function Home() {
   return (
@@ -24,12 +31,15 @@ export default function Home() {
       {/* Top data strip */}
       <TopStrip />
 
-      {/* Main panels */}
-      <div className="flex flex-grow overflow-hidden border-t border-[#00ff88]">
-        <aside className="w-[30%] border-r border-[#00ff88]">
+      {/* Main panels container */}
+      <div className="flex flex-grow overflow-hidden border-t border-[#00ff88] relative">
+        {/* Animated Black Hole Background */}
+        <BlackHole />
+
+        <aside className="w-[30%] border-r border-[#00ff88] relative z-10 bg-transparent">
           <Catalogue />
         </aside>
-        <section className="w-[70%]">
+        <section className="w-[70%] relative z-10 bg-transparent">
           <Terminal />
         </section>
       </div>
