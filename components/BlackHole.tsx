@@ -22,7 +22,6 @@ export default function BlackHole() {
     let animationId: number;
     let rotation = 0;
 
-    // Resize canvas to match container
     const resize = () => {
       canvas.width = canvas.offsetWidth;
       canvas.height = canvas.offsetHeight;
@@ -30,21 +29,20 @@ export default function BlackHole() {
     resize();
     window.addEventListener("resize", resize);
 
-    // Stars — generated once
-    const stars = Array.from({ length: 250 }, () => ({
+    const stars = Array.from({ length: 300 }, () => ({
       x: Math.random(),
       y: Math.random(),
-      opacity: Math.random() * 0.5 + 0.1,
-      size: Math.random() * 1.2 + 0.3,
+      opacity: Math.random() * 0.7 + 0.1,
+      size: Math.random() * 1.0 + 0.2,
     }));
 
-    // Orbiting particles
+    // Particles kept tight to disk radii
     const particles: Particle[] = Array.from({ length: 80 }, () => ({
       angle: Math.random() * Math.PI * 2,
-      radius: Math.random() * 200 + 90,
-      speed: Math.random() * 0.003 + 0.001,
-      size: Math.random() * 1.5 + 0.5,
-      opacity: Math.random() * 0.6 + 0.2,
+      radius: Math.random() * 100 + 80, // tight band: 80–180px only
+      speed: Math.random() * 0.004 + 0.002,
+      size: Math.random() * 1.0 + 0.3,
+      opacity: Math.random() * 0.5 + 0.2,
     }));
 
     const draw = () => {
@@ -53,11 +51,12 @@ export default function BlackHole() {
       const cx = w / 2;
       const cy = h / 2;
 
-      // Clear
-      ctx.clearRect(0, 0, w, h);
-
       // Background
-      ctx.fillStyle = "#000000";
+      const bgGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, Math.max(w, h) * 0.8);
+      bgGrad.addColorStop(0, "#06060f");
+      bgGrad.addColorStop(0.5, "#030308");
+      bgGrad.addColorStop(1, "#000000");
+      ctx.fillStyle = bgGrad;
       ctx.fillRect(0, 0, w, h);
 
       // Stars
@@ -68,74 +67,130 @@ export default function BlackHole() {
         ctx.fill();
       });
 
-      // Outer glow / gravitational lensing
-      for (let i = 6; i > 0; i--) {
-        ctx.beginPath();
-        ctx.ellipse(cx, cy, 340 + i * 18, 100 + i * 8, rotation * 0.1, 0, Math.PI * 2);
-        ctx.strokeStyle = `rgba(0, 255, 136, ${0.015 * i})`;
-        ctx.lineWidth = 8;
-        ctx.stroke();
-      }
+      // Disk tilt — very slight, close to horizontal
+      const TILT = 0.18;
+      const diskAngleBase = rotation;
 
-      // Accretion disk — outer to inner
-      const diskLayers = 55;
-      for (let i = diskLayers; i >= 0; i--) {
-        const t = i / diskLayers;
-        const xRadius = 90 + t * 220;
-        const yRadius = 18 + t * 65;
-        const angle = rotation + t * 0.4;
+      // --- BACK DISK ---
+      for (let i = 55; i >= 0; i--) {
+        const t = i / 55;
+        const xr = 90 + t * 190;
+        const yr = (16 + t * 48) * TILT + 8;
 
-        let color: string;
-        if (t > 0.7) {
-          // Outer — pale blue/white
-          const a = ((t - 0.7) / 0.3) * 0.12;
-          color = `rgba(180, 220, 255, ${a})`;
-        } else if (t > 0.35) {
-          // Mid — bright orange/yellow
-          const a = 0.25 + (1 - Math.abs(t - 0.5) * 2) * 0.35;
-          color = `rgba(255, 180, 60, ${a})`;
+        let r: number, g: number, b: number, a: number;
+        if (t > 0.65) {
+          r = 160; g = 80; b = 20; a = t * 0.07;
+        } else if (t > 0.3) {
+          r = 255; g = 130; b = 25; a = 0.10 + (0.65 - t) * 0.22;
         } else {
-          // Inner — hot white/orange
-          const a = t * 0.7 + 0.15;
-          color = `rgba(255, 230, 150, ${a})`;
+          r = 255; g = 195; b = 100; a = 0.15 + (0.3 - t) * 0.35;
         }
 
         ctx.beginPath();
-        ctx.ellipse(cx, cy, xRadius, yRadius, angle, 0, Math.PI * 2);
-        ctx.strokeStyle = color;
-        ctx.lineWidth = t > 0.5 ? 1.5 : 2.5;
+        ctx.ellipse(cx, cy, xr, yr, diskAngleBase, Math.PI, Math.PI * 2);
+        ctx.strokeStyle = `rgba(${r},${g},${b},${a})`;
+        ctx.lineWidth = t > 0.4 ? 1.2 : 2.5;
         ctx.stroke();
       }
 
-      // Orbiting particles
-      particles.forEach((p) => {
-        p.angle += p.speed * (1 + (300 - p.radius) / 300);
-        const px = cx + Math.cos(p.angle) * p.radius;
-        const py = cy + Math.sin(p.angle) * (p.radius * 0.28);
+      // --- LENSING HUMP ---
+      // Bright arc of lensed light bending over the top of the singularity
+      for (let i = 0; i < 14; i++) {
+        const t = i / 14;
+        const a = (1 - t) * 0.22;
         ctx.beginPath();
-        ctx.arc(px, py, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 240, 180, ${p.opacity})`;
-        ctx.fill();
-      });
+        ctx.ellipse(cx, cy - 58 - t * 10, 52 + t * 30, 12 + t * 8, 0, Math.PI * 1.08, Math.PI * 1.92);
+        ctx.strokeStyle = `rgba(255, 180, 70, ${a})`;
+        ctx.lineWidth = 2.5 - t * 1.5;
+        ctx.stroke();
+      }
 
-      // Singularity — hard black core
-      const coreGradient = ctx.createRadialGradient(cx, cy, 0, cx, cy, 130);
-      coreGradient.addColorStop(0, "rgba(0, 0, 0, 1)");
-      coreGradient.addColorStop(0.45, "rgba(0, 0, 0, 1)");
-      coreGradient.addColorStop(1, "rgba(0, 0, 0, 0)");
+      // Bright highlight on the lensing hump
       ctx.beginPath();
-      ctx.arc(cx, cy, 130, 0, Math.PI * 2);
-      ctx.fillStyle = coreGradient;
-      ctx.fill();
-
-      // Inner glow ring around singularity
-      ctx.beginPath();
-      ctx.ellipse(cx, cy, 95, 22, rotation, 0, Math.PI * 2);
-      ctx.strokeStyle = "rgba(255, 160, 40, 0.55)";
-      ctx.lineWidth = 3;
+      ctx.ellipse(cx, cy - 62, 40, 7, 0, Math.PI * 1.15, Math.PI * 1.85);
+      ctx.strokeStyle = "rgba(255, 230, 150, 0.65)";
+      ctx.lineWidth = 2;
       ctx.stroke();
 
-      rotation += 0.001;
+      // --- SINGULARITY SHADOW ---
+      const shadowGrad = ctx.createRadialGradient(cx, cy, 48, cx, cy, 115);
+      shadowGrad.addColorStop(0, "rgba(0,0,0,1)");
+      shadowGrad.addColorStop(0.55, "rgba(0,0,0,1)");
+      shadowGrad.addColorStop(1, "rgba(0,0,0,0)");
+      ctx.beginPath();
+      ctx.arc(cx, cy, 115, 0, Math.PI * 2);
+      ctx.fillStyle = shadowGrad;
+      ctx.fill();
+
+      // --- PHOTON RING ---
+      // Thin, tight, bright — hugs the event horizon
+      const photonGrad = ctx.createRadialGradient(cx, cy, 60, cx, cy, 78);
+      photonGrad.addColorStop(0, "rgba(0,0,0,0)");
+      photonGrad.addColorStop(0.5, "rgba(255, 200, 80, 0.3)");
+      photonGrad.addColorStop(0.8, "rgba(255, 240, 170, 0.75)");
+      photonGrad.addColorStop(1, "rgba(255, 255, 220, 0.0)");
+      ctx.beginPath();
+      ctx.arc(cx, cy, 78, 0, Math.PI * 2);
+      ctx.fillStyle = photonGrad;
+      ctx.fill();
+
+      // Single crisp photon ring line
+      ctx.beginPath();
+      ctx.arc(cx, cy, 68, 0, Math.PI * 2);
+      ctx.strokeStyle = "rgba(255, 235, 150, 0.6)";
+      ctx.lineWidth = 1;
+      ctx.stroke();
+
+      // --- FRONT DISK ---
+      for (let i = 55; i >= 0; i--) {
+        const t = i / 55;
+        const xr = 90 + t * 190;
+        const yr = (16 + t * 48) * TILT + 8;
+
+        let r: number, g: number, b: number, a: number;
+        if (t > 0.65) {
+          r = 160; g = 80; b = 20; a = t * 0.09;
+        } else if (t > 0.3) {
+          r = 255; g = 130; b = 25; a = 0.15 + (0.65 - t) * 0.28;
+        } else {
+          r = 255; g = 195; b = 100; a = 0.22 + (0.3 - t) * 0.45;
+        }
+
+        ctx.beginPath();
+        ctx.ellipse(cx, cy, xr, yr, diskAngleBase, 0, Math.PI);
+        ctx.strokeStyle = `rgba(${r},${g},${b},${a})`;
+        ctx.lineWidth = t > 0.4 ? 1.2 : 3;
+        ctx.stroke();
+      }
+
+      // --- PARTICLES — clipped to disk band only ---
+      ctx.save();
+      // Clip to an elliptical band around the disk so no stray pixels escape
+      ctx.beginPath();
+      ctx.ellipse(cx, cy, 290, 80, diskAngleBase, 0, Math.PI * 2);
+      ctx.clip();
+
+      particles.forEach((p) => {
+        p.angle += p.speed * (1 + (180 - p.radius) / 180);
+        const px = cx + Math.cos(p.angle) * p.radius;
+        const py = cy + Math.sin(p.angle) * (p.radius * 0.22);
+        if (Math.sin(p.angle) > -0.2) {
+          ctx.beginPath();
+          ctx.arc(px, py, p.size, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(255, 215, 120, ${p.opacity})`;
+          ctx.fill();
+        }
+      });
+
+      ctx.restore();
+
+      // --- HARD BLACK CORE ---
+      ctx.beginPath();
+      ctx.arc(cx, cy, 60, 0, Math.PI * 2);
+      ctx.fillStyle = "#000000";
+      ctx.fill();
+
+      rotation += 0.0007;
       animationId = requestAnimationFrame(draw);
     };
 
