@@ -69,7 +69,7 @@ export default function BlackHole() {
 
       // Disk tilt — very slight, close to horizontal
       const TILT = 0.18;
-      const diskAngleBase = rotation;
+      const diskAngleBase = 0.05;
 
       // --- BACK DISK ---
       for (let i = 55; i >= 0; i--) {
@@ -180,6 +180,7 @@ export default function BlackHole() {
           ctx.fillStyle = `rgba(255, 215, 120, ${p.opacity})`;
           ctx.fill();
         }
+        
       });
 
       ctx.restore();
