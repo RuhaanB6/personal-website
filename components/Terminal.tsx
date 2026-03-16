@@ -234,7 +234,7 @@ export default function Terminal() {
 
       {/* Output */}
       <div 
-        className="flex-grow overflow-y-auto px-4 pb-2 font-mono text-base text-[#00ff88] leading-relaxed"
+        className="flex-grow overflow-y-auto px-4 pb-2 font-mono text-base text-[#00ff88] leading-relaxed whitespace-pre-wrap"
         style={{ textShadow: "3px 3px 6px rgba(0,0,0,1), 0 0 10px rgba(0,0,0,1)" }}
       >
         {lines.map((line, i) => {
