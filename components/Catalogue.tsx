@@ -1,6 +1,8 @@
 export default function Catalogue() {
   const items = ["about", "projects", "blog", "resume", "photos"];
 
+  const navItemClass = "group cursor-pointer flex items-center gap-2 border-l-2 border-transparent hover:border-crt-green hover:pl-2 transition-all duration-150";
+
   return (
     <div className="flex flex-col h-full border-r border-crt-green p-4 overflow-hidden">
       <div className="mb-6">
@@ -8,21 +10,56 @@ export default function Catalogue() {
           // CATALOGUE
         </h2>
       </div>
-      <nav className="flex flex-col gap-2">
+      <nav className="flex flex-col gap-3">
         {items.map((item) => (
           <div
             key={item}
-            className="group cursor-pointer flex items-center gap-2"
+            className={navItemClass}
           >
             <span className="text-crt-dim group-hover:text-crt-green transition-colors duration-150">
               {">"}
             </span>
-            <span className="text-crt-dim group-hover:text-crt-green uppercase tracking-widest text-sm transition-colors duration-150">
+            <span className="text-crt-dim group-hover:text-crt-green uppercase tracking-widest text-base transition-colors duration-150">
               {item}
             </span>
           </div>
         ))}
       </nav>
+
+      {/* External Links Section */}
+      <div className="mt-8 flex flex-col gap-3">
+        <div className="text-crt-dim mb-2 tracking-tighter opacity-50">
+          ─────────────────
+        </div>
+        
+        <a 
+          href="https://github.com/RuhaanB6" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className={navItemClass}
+        >
+          <span className="text-crt-dim group-hover:text-crt-green transition-colors duration-150">
+            {">"}
+          </span>
+          <span className="text-crt-dim group-hover:text-crt-green uppercase tracking-widest text-base transition-colors duration-150">
+            GITHUB ↗
+          </span>
+        </a>
+
+        <a 
+          href="https://www.linkedin.com/in/ruhaan-bhargav/" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className={navItemClass}
+        >
+          <span className="text-crt-dim group-hover:text-crt-green transition-colors duration-150">
+            {">"}
+          </span>
+          <span className="text-crt-dim group-hover:text-crt-green uppercase tracking-widest text-base transition-colors duration-150">
+            LINKEDIN ↗
+          </span>
+        </a>
+      </div>
     </div>
   );
 }
