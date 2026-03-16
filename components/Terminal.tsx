@@ -117,10 +117,11 @@ export default function Terminal() {
 
     const runBoot = async () => {
       let cursor = 0;
-      for (const line of BOOT_LINES) {
+      for (let i = 0; i < BOOT_LINES.length; i++) {
+        const line = BOOT_LINES[i];
         if (cancelled) return;
         if (line === "__LOADING_BAR__") {
-          // Animate loading bar (faster: 20ms instead of 40ms)
+          // Animate loading bar (middle ground: 30ms instead of 20ms or 40ms)
           await new Promise<void>((res) => {
             let filled = 0;
             const total = 20;
@@ -141,29 +142,29 @@ export default function Terminal() {
               setLoadingBar(pct);
               if (filled === total) {
                 clearInterval(interval);
-                setTimeout(res, 100); // reduced from 200
+                setTimeout(res, 150); // middle ground
               }
-            }, 20);
+            }, 30);
           });
-          cursor += 50; // reduced from 100
+          cursor += 75; // middle ground
         } else {
           await addLine(line, cursor);
-          // Keep first lines (initializing and divider) same, speed up rest
-          if (line === "RUHAAN_OS v1.0 — INITIALIZING..." || line === DIVIDER && lines.length < 2) {
+          // Keep first lines same, slightly slower rest (90ms instead of 60ms)
+          if (line === "RUHAAN_OS v1.0 — INITIALIZING..." || (line === DIVIDER && i < 2)) {
             cursor = 120;
           } else {
-            cursor = 60; // reduced from 120
+            cursor = 90;
           }
         }
       }
-      // Show welcome after boot (faster: 300ms instead of 600ms)
+      // Show welcome after boot (middle ground: 450ms instead of 300ms)
       setTimeout(() => {
         if (!cancelled) {
           setLines((prev) => [...prev, "", ...WELCOME]);
           setBooting(false);
           setTimeout(() => inputRef.current?.focus(), 100);
         }
-      }, 300);
+      }, 450);
     };
 
     runBoot();
