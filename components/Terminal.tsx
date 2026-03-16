@@ -120,7 +120,7 @@ export default function Terminal() {
       for (const line of BOOT_LINES) {
         if (cancelled) return;
         if (line === "__LOADING_BAR__") {
-          // Animate loading bar
+          // Animate loading bar (faster: 20ms instead of 40ms)
           await new Promise<void>((res) => {
             let filled = 0;
             const total = 20;
@@ -141,24 +141,29 @@ export default function Terminal() {
               setLoadingBar(pct);
               if (filled === total) {
                 clearInterval(interval);
-                setTimeout(res, 200);
+                setTimeout(res, 100); // reduced from 200
               }
-            }, 40);
+            }, 20);
           });
-          cursor += 100;
+          cursor += 50; // reduced from 100
         } else {
           await addLine(line, cursor);
-          cursor += 120;
+          // Keep first lines (initializing and divider) same, speed up rest
+          if (line === "RUHAAN_OS v1.0 — INITIALIZING..." || line === DIVIDER && lines.length < 2) {
+            cursor = 120;
+          } else {
+            cursor = 60; // reduced from 120
+          }
         }
       }
-      // Show welcome after boot
+      // Show welcome after boot (faster: 300ms instead of 600ms)
       setTimeout(() => {
         if (!cancelled) {
           setLines((prev) => [...prev, "", ...WELCOME]);
           setBooting(false);
           setTimeout(() => inputRef.current?.focus(), 100);
         }
-      }, cursor + 600);
+      }, 300);
     };
 
     runBoot();
@@ -226,12 +231,15 @@ export default function Terminal() {
       </div>
 
       {/* Output */}
-      <div className="flex-grow overflow-y-auto px-4 pb-2 font-mono text-sm text-[#00ff88] leading-relaxed">
+      <div 
+        className="flex-grow overflow-y-auto px-4 pb-2 font-mono text-base text-[#00ff88] leading-relaxed"
+        style={{ textShadow: "2px 2px 4px rgba(0,0,0,0.8)" }}
+      >
         {lines.map((line, i) => (
           <div
             key={i}
             className={
-              line.startsWith(">") || line.startsWith("  LOADING") || line.startsWith("  [nav")
+              line.trim().startsWith(">") || line.startsWith("  LOADING") || line.includes("[navigation to")
                 ? "text-[#00aa55]"
                 : "text-[#00ff88]"
             }
@@ -250,7 +258,10 @@ export default function Terminal() {
 
       {/* Input */}
       {!booting && (
-        <div className="px-4 py-3 border-t border-[#003322] flex items-center gap-2 font-mono text-sm text-[#00ff88]">
+        <div 
+          className="px-4 py-3 border-t border-[#003322] flex items-center gap-2 font-mono text-base text-[#00ff88]"
+          style={{ textShadow: "2px 2px 4px rgba(0,0,0,0.8)" }}
+        >
           <span className="opacity-70 whitespace-nowrap">ruhaan@RUHAAN_OS:~$</span>
           <input
             ref={inputRef}
@@ -262,7 +273,7 @@ export default function Terminal() {
                 setInput("");
               }
             }}
-            className="flex-1 bg-transparent outline-none border-none text-[#00ff88] caret-[#00ff88] font-mono text-sm"
+            className="flex-1 bg-transparent outline-none border-none text-[#00ff88] caret-[#00ff88] font-mono text-base"
             autoComplete="off"
             spellCheck={false}
           />
