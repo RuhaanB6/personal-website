@@ -71,6 +71,7 @@ const COMMANDS: Record<string, string[]> = {
     "",
     "  Built from scratch by Ruhaan Bhargav",
     "  Framework:  Next.js 15 (App Router)",
+    "  Deployment:  Vercel",
     "  Styling:    Tailwind CSS",
     "  Language:   TypeScript",
     "  Black hole: HTML5 Canvas API",
@@ -121,7 +122,7 @@ export default function Terminal() {
         const line = BOOT_LINES[i];
         if (cancelled) return;
         if (line === "__LOADING_BAR__") {
-          // Animate loading bar (middle ground: 30ms instead of 20ms or 40ms)
+          // Animate loading bar (finer middle ground: 35ms)
           await new Promise<void>((res) => {
             let filled = 0;
             const total = 20;
@@ -142,29 +143,29 @@ export default function Terminal() {
               setLoadingBar(pct);
               if (filled === total) {
                 clearInterval(interval);
-                setTimeout(res, 150); // middle ground
+                setTimeout(res, 180); // finer middle ground
               }
-            }, 30);
+            }, 35);
           });
-          cursor += 75; // middle ground
+          cursor += 90; // finer middle ground
         } else {
           await addLine(line, cursor);
-          // Keep first lines same, slightly slower rest (90ms instead of 60ms)
+          // Keep first lines same, slightly slower rest (95ms instead of 90ms)
           if (line === "RUHAAN_OS v1.0 — INITIALIZING..." || (line === DIVIDER && i < 2)) {
             cursor = 120;
           } else {
-            cursor = 90;
+            cursor = 95;
           }
         }
       }
-      // Show welcome after boot (middle ground: 450ms instead of 300ms)
+      // Show welcome after boot (finer middle ground: 530ms)
       setTimeout(() => {
         if (!cancelled) {
           setLines((prev) => [...prev, "", ...WELCOME]);
           setBooting(false);
           setTimeout(() => inputRef.current?.focus(), 100);
         }
-      }, 450);
+      }, 530);
     };
 
     runBoot();
