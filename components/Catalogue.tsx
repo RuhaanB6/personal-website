@@ -76,7 +76,7 @@ export default function Catalogue() {
           </h2>
           <div className="text-crt-green uppercase tracking-widest text-base leading-relaxed flex flex-col gap-0.5">
             {["QUANT FINANCE", "PHYSICS", "CHESS", "PHOTOGRAPHY"].map((interest) => (
-              <p key={interest}>{interest}</p>
+              <p key={interest}>{">"} {interest}</p>
             ))}
           </div>
         </div>
