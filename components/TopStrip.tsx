@@ -32,7 +32,7 @@ export default function TopStrip() {
       </div>
       <div className="flex items-center gap-4">
         <span className="opacity-50 text-[8px]">══════════════════</span>
-        <span>SIG:[████████░░]</span>
+        <span>SIG:[██████░░░░]</span>
       </div>
     </div>
   );
