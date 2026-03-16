@@ -57,30 +57,32 @@ export default function Catalogue() {
         </a>
       </div>
 
-      {/* Operator Section */}
+      {/* Operator & Interests Section */}
       <div className="mt-8 pt-8 border-t border-[#003322]">
-        <h2 className="text-crt-green font-mono text-sm tracking-wider opacity-80 mb-6">
-          // OPERATOR
-        </h2>
-        <div className="text-crt-green uppercase tracking-widest text-base leading-relaxed">
-          <p>RUHAAN BHARGAV</p>
-          <p>CS + MATHEMATICS</p>
-          <p>PURDUE UNIVERSITY — Y2</p>
+        <div className="mb-6">
+          <h2 className="text-crt-green font-mono text-sm tracking-wider opacity-80 mb-2">
+            // OPERATOR
+          </h2>
+          <div className="text-crt-green uppercase tracking-widest text-base leading-relaxed">
+            <p>RUHAAN BHARGAV</p>
+            <p>CS + MATHEMATICS</p>
+            <p>PURDUE UNIVERSITY — Y2</p>
+          </div>
         </div>
-      </div>
 
-      {/* Interests Section */}
-      <div className="mt-8 pt-8 border-t border-[#003322]">
-        <h2 className="text-crt-green font-mono text-sm tracking-wider opacity-80 mb-6">
-          INTERESTS:
-        </h2>
-        <div className="text-crt-green uppercase tracking-widest text-base leading-relaxed flex flex-col gap-1">
-          {["QUANT FINANCE", "PHYSICS", "CHESS", "SPORTS", "READING", "MOVIES"].map((interest) => (
-            <p key={interest}>{interest}</p>
-          ))}
+        <div>
+          <h2 className="text-crt-green font-mono text-sm tracking-wider opacity-80 mb-2">
+            INTERESTS:
+          </h2>
+          <div className="text-crt-green uppercase tracking-widest text-base leading-relaxed flex flex-col gap-0.5">
+            {["QUANT FINANCE", "PHYSICS", "CHESS", "PHOTOGRAPHY"].map((interest) => (
+              <p key={interest}>{interest}</p>
+            ))}
+          </div>
         </div>
       </div>
       <div className="mt-8 border-t border-[#003322]" />
-    </div>
-  );
-}
+      </div>
+      );
+      }
+
