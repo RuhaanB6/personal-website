@@ -27,11 +27,7 @@ export default function Catalogue() {
       </nav>
 
       {/* External Links Section */}
-      <div className="mt-8 flex flex-col gap-3">
-        <div className="text-crt-dim mb-2 tracking-tighter opacity-50">
-          ─────────────────
-        </div>
-        
+      <div className="mt-8 pt-8 border-t border-[#003322] flex flex-col gap-3">
         <a 
           href="https://github.com/RuhaanB6" 
           target="_blank" 
@@ -60,6 +56,31 @@ export default function Catalogue() {
           </span>
         </a>
       </div>
+
+      {/* Operator Section */}
+      <div className="mt-8 pt-8 border-t border-[#003322]">
+        <h2 className="text-crt-green font-mono text-sm tracking-wider opacity-80 mb-6">
+          // OPERATOR
+        </h2>
+        <div className="text-crt-green uppercase tracking-widest text-base leading-relaxed">
+          <p>RUHAAN BHARGAV</p>
+          <p>CS + MATHEMATICS</p>
+          <p>PURDUE UNIVERSITY — Y2</p>
+        </div>
+      </div>
+
+      {/* Interests Section */}
+      <div className="mt-8 pt-8 border-t border-[#003322]">
+        <h2 className="text-crt-green font-mono text-sm tracking-wider opacity-80 mb-6">
+          INTERESTS:
+        </h2>
+        <div className="text-crt-green uppercase tracking-widest text-base leading-relaxed flex flex-col gap-1">
+          {["QUANT FINANCE", "PHYSICS", "CHESS", "SPORTS", "READING", "MOVIES"].map((interest) => (
+            <p key={interest}>{interest}</p>
+          ))}
+        </div>
+      </div>
+      <div className="mt-8 border-t border-[#003322]" />
     </div>
   );
 }
