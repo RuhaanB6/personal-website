@@ -240,8 +240,8 @@ export default function Terminal() {
         {lines.map((line, i) => {
           const isGitHub = line.includes("github.com/RuhaanB6");
           const isCommandOutput = line.trim().startsWith(">") || 
-                                 line.startsWith("  LOADING") || 
-                                 line.includes("[navigation to");
+                                  line.startsWith("  LOADING") || 
+                                  line.includes("[navigation to");
           
           return (
             <div
