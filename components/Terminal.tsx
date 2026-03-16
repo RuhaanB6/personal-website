@@ -237,18 +237,38 @@ export default function Terminal() {
         className="flex-grow overflow-y-auto px-4 pb-2 font-mono text-base text-[#00ff88] leading-relaxed"
         style={{ textShadow: "3px 3px 6px rgba(0,0,0,1), 0 0 10px rgba(0,0,0,1)" }}
       >
-        {lines.map((line, i) => (
-          <div
-            key={i}
-            className={
-              line.trim().startsWith(">") || line.startsWith("  LOADING") || line.includes("[navigation to")
-                ? "text-[#00aa55]"
-                : "text-[#00ff88]"
-            }
-          >
-            {line === "" ? <br /> : line}
-          </div>
-        ))}
+        {lines.map((line, i) => {
+          const isGitHub = line.includes("github.com/RuhaanB6");
+          const isCommandOutput = line.trim().startsWith(">") || 
+                                 line.startsWith("  LOADING") || 
+                                 line.includes("[navigation to");
+          
+          return (
+            <div
+              key={i}
+              className={isCommandOutput ? "text-[#00aa55]" : "text-[#00ff88]"}
+            >
+              {line === "" ? (
+                <br />
+              ) : isGitHub ? (
+                <span>
+                  {line.split("github.com/RuhaanB6")[0]}
+                  <a 
+                    href="https://github.com/RuhaanB6" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="hover:underline decoration-[#00ff88] underline-offset-4 cursor-pointer"
+                  >
+                    github.com/RuhaanB6
+                  </a>
+                  {line.split("github.com/RuhaanB6")[1]}
+                </span>
+              ) : (
+                line
+              )}
+            </div>
+          );
+        })}
 
         {/* Blinking cursor during boot */}
         {booting && (
