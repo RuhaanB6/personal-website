@@ -42,7 +42,7 @@ export const projects: Project[] = [
     description:
       "Full-stack ticketing platform built for the Purdue Grand Prix — a 3,000-attendee event. Features a normalized SQLite backend, QR code generation for contactless entry, and a secure authentication layer using cryptographic hashing and custom ID generation. Architected for extensibility with planned Stripe payment integration and API-based database scaling. Replacing entirely manual check-in processes.",
     year: "2025",
-    tags: ["Python", "SQLite", "Flask", "QR", "Cryptography"],
+    tags: ["Python", "SQLite", "Flask", "QR", "Cryptography", "Unit Testing"],
     image: "/projects/ticketing-demo.png",
     github: "https://github.com/hub-ry/ticketing",
     live: "",
