@@ -3,11 +3,11 @@
 import { useEffect, useRef } from "react";
 
 interface Particle {
-  radius: number;
   angle: number;
+  radius: number;
   speed: number;
   size: number;
-  color: string;
+  opacity: number;
 }
 
 export default function BlackHole() {
@@ -16,151 +16,148 @@ export default function BlackHole() {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    let animationFrameId: number;
-    let rotationAngle = 0;
+    let animationId: number;
+    let rotation = 0;
 
-    // Set canvas dimensions
+    // Resize canvas to match container
     const resize = () => {
       canvas.width = canvas.offsetWidth;
       canvas.height = canvas.offsetHeight;
     };
-    window.addEventListener("resize", resize);
     resize();
+    window.addEventListener("resize", resize);
 
-    // Layer 1: Static Stars
-    const stars = Array.from({ length: 200 }, () => ({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
+    // Stars — generated once
+    const stars = Array.from({ length: 250 }, () => ({
+      x: Math.random(),
+      y: Math.random(),
       opacity: Math.random() * 0.5 + 0.1,
+      size: Math.random() * 1.2 + 0.3,
     }));
 
-    // Layer 5: Orbiting Particles
-    const particles: Particle[] = Array.from({ length: 60 }, () => {
-      const radius = Math.random() * 200 + 100;
-      return {
-        radius,
-        angle: Math.random() * Math.PI * 2,
-        speed: (0.001 + Math.random() * 0.003) * (200 / radius), // Faster if closer
-        size: Math.random() * 1.5 + 0.5,
-        color: `rgba(255, 255, ${Math.floor(Math.random() * 155 + 100)}, ${Math.random() * 0.5 + 0.3})`,
-      };
-    });
+    // Orbiting particles
+    const particles: Particle[] = Array.from({ length: 80 }, () => ({
+      angle: Math.random() * Math.PI * 2,
+      radius: Math.random() * 200 + 90,
+      speed: Math.random() * 0.003 + 0.001,
+      size: Math.random() * 1.5 + 0.5,
+      opacity: Math.random() * 0.6 + 0.2,
+    }));
 
     const draw = () => {
-      ctx.fillStyle = "black";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      const w = canvas.width;
+      const h = canvas.height;
+      const cx = w / 2;
+      const cy = h / 2;
 
-      const centerX = canvas.width / 2;
-      const centerY = canvas.height / 2;
+      // Clear
+      ctx.clearRect(0, 0, w, h);
 
-      // Layer 1: Stars
+      // Background
+      ctx.fillStyle = "#000000";
+      ctx.fillRect(0, 0, w, h);
+
+      // Stars
       stars.forEach((star) => {
-        ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
         ctx.beginPath();
-        ctx.arc(star.x, star.y, 0.8, 0, Math.PI * 2);
+        ctx.arc(star.x * w, star.y * h, star.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
         ctx.fill();
       });
 
-      // Layer 2: Gravitational Lensing (Concentric Ellipses)
-      ctx.strokeStyle = "rgba(0, 255, 136, 0.03)";
-      ctx.lineWidth = 1;
-      for (let i = 0; i < 6; i++) {
+      // Outer glow / gravitational lensing
+      for (let i = 6; i > 0; i--) {
         ctx.beginPath();
-        ctx.ellipse(
-          centerX,
-          centerY,
-          150 + i * 40,
-          100 + i * 20,
-          (i * Math.PI) / 6,
-          0,
-          Math.PI * 2
-        );
+        ctx.ellipse(cx, cy, 340 + i * 18, 100 + i * 8, rotation * 0.1, 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(0, 255, 136, ${0.015 * i})`;
+        ctx.lineWidth = 8;
         ctx.stroke();
       }
 
-      // Layer 3: Accretion Disk (40 rotating ellipses)
-      rotationAngle += 0.001;
-      for (let i = 0; i < 40; i++) {
-        const ratio = i / 40;
-        let color;
-        if (ratio < 0.3) {
-          color = `rgba(255, 140, 0, ${0.6 - ratio})`;
-        } else if (ratio < 0.7) {
-          color = `rgba(255, 200, 100, ${0.4})`;
+      // Accretion disk — outer to inner
+      const diskLayers = 55;
+      for (let i = diskLayers; i >= 0; i--) {
+        const t = i / diskLayers;
+        const xRadius = 90 + t * 220;
+        const yRadius = 18 + t * 65;
+        const angle = rotation + t * 0.4;
+
+        let color: string;
+        if (t > 0.7) {
+          // Outer — pale blue/white
+          const a = ((t - 0.7) / 0.3) * 0.12;
+          color = `rgba(180, 220, 255, ${a})`;
+        } else if (t > 0.35) {
+          // Mid — bright orange/yellow
+          const a = 0.25 + (1 - Math.abs(t - 0.5) * 2) * 0.35;
+          color = `rgba(255, 180, 60, ${a})`;
         } else {
-          color = `rgba(180, 220, 255, ${0.15})`;
+          // Inner — hot white/orange
+          const a = t * 0.7 + 0.15;
+          color = `rgba(255, 230, 150, ${a})`;
         }
 
-        ctx.strokeStyle = color;
         ctx.beginPath();
-        ctx.ellipse(
-          centerX,
-          centerY,
-          80 + i * 5,
-          30 + i * 1.2,
-          rotationAngle + (i * Math.PI) / 80,
-          0,
-          Math.PI * 2
-        );
+        ctx.ellipse(cx, cy, xRadius, yRadius, angle, 0, Math.PI * 2);
+        ctx.strokeStyle = color;
+        ctx.lineWidth = t > 0.5 ? 1.5 : 2.5;
         ctx.stroke();
       }
 
-      // Layer 5: Orbiting Particles
+      // Orbiting particles
       particles.forEach((p) => {
-        p.angle += p.speed;
-        const x = centerX + Math.cos(p.angle) * p.radius * 1.5; // Slight perspective
-        const y = centerY + Math.sin(p.angle) * p.radius * 0.5;
-
-        ctx.fillStyle = p.color;
+        p.angle += p.speed * (1 + (300 - p.radius) / 300);
+        const px = cx + Math.cos(p.angle) * p.radius;
+        const py = cy + Math.sin(p.angle) * (p.radius * 0.28);
         ctx.beginPath();
-        ctx.arc(x, y, p.size, 0, Math.PI * 2);
+        ctx.arc(px, py, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 240, 180, ${p.opacity})`;
         ctx.fill();
       });
 
-      // Layer 4: Singularity
-      // Halo
-      const gradient = ctx.createRadialGradient(
-        centerX,
-        centerY,
-        0,
-        centerX,
-        centerY,
-        120
-      );
-      gradient.addColorStop(0, "rgba(0, 0, 0, 1)");
-      gradient.addColorStop(0.5, "rgba(0, 0, 0, 0.9)");
-      gradient.addColorStop(1, "rgba(0, 0, 0, 0)");
-      ctx.fillStyle = gradient;
+      // Singularity — hard black core
+      const coreGradient = ctx.createRadialGradient(cx, cy, 0, cx, cy, 130);
+      coreGradient.addColorStop(0, "rgba(0, 0, 0, 1)");
+      coreGradient.addColorStop(0.45, "rgba(0, 0, 0, 1)");
+      coreGradient.addColorStop(1, "rgba(0, 0, 0, 0)");
       ctx.beginPath();
-      ctx.arc(centerX, centerY, 120, 0, Math.PI * 2);
+      ctx.arc(cx, cy, 130, 0, Math.PI * 2);
+      ctx.fillStyle = coreGradient;
       ctx.fill();
 
-      // Core
-      ctx.fillStyle = "black";
+      // Inner glow ring around singularity
       ctx.beginPath();
-      ctx.arc(centerX, centerY, 60, 0, Math.PI * 2);
-      ctx.fill();
+      ctx.ellipse(cx, cy, 95, 22, rotation, 0, Math.PI * 2);
+      ctx.strokeStyle = "rgba(255, 160, 40, 0.55)";
+      ctx.lineWidth = 3;
+      ctx.stroke();
 
-      animationFrameId = requestAnimationFrame(draw);
+      rotation += 0.001;
+      animationId = requestAnimationFrame(draw);
     };
 
     draw();
 
     return () => {
+      cancelAnimationFrame(animationId);
       window.removeEventListener("resize", resize);
-      cancelAnimationFrame(animationFrameId);
     };
   }, []);
 
   return (
     <canvas
       ref={canvasRef}
-      className="absolute top-0 left-0 w-full h-full z-0 pointer-events-none"
-      style={{ background: "black" }}
+      style={{
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        zIndex: 0,
+      }}
     />
   );
 }
