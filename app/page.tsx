@@ -1,5 +1,8 @@
 "use client";
 
+// Adding the speed thingie to check speed on vercel
+
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import dynamic from "next/dynamic";
 import Catalogue from "@/components/Catalogue";
 import Terminal from "@/components/Terminal";
