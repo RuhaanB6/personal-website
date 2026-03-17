@@ -90,7 +90,7 @@ const COMMANDS: Record<string, string[]> = {
   ],
 };
 
-const VALID_PAGES = ["about", "projects", "blog", "resume", "photos"];
+const VALID_PAGES = ["about", "projects", "blog", "resume", "photography"];
 
 export default function Terminal({ onNavigate }: { onNavigate: (page: string) => void }) {
   const [lines, setLines] = useState<string[]>([]);
