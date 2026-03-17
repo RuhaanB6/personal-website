@@ -9,6 +9,7 @@ import Terminal from "@/components/Terminal";
 import TopStrip from "@/components/TopStrip";
 import BottomStrip from "@/components/BottomStrip";
 import ProjectsWindow from "@/components/ProjectsWindow";
+import AboutWindow from "@/components/AboutWindow";
 
 const BlackHole = dynamic(() => import("@/components/BlackHole"), {
   ssr: false,
@@ -49,6 +50,9 @@ export default function Home() {
           <Terminal onNavigate={setActiveWindow} />
           {activeWindow === "projects" && (
             <ProjectsWindow onClose={() => setActiveWindow(null)} />
+          )}
+          {activeWindow === "about" && (
+            <AboutWindow onClose={() => setActiveWindow(null)} />
           )}
         </section>
       </div>
