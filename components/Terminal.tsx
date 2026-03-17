@@ -15,11 +15,11 @@ const WELCOME = [
   "",
   "// AVAILABLE COMMANDS",
   "",
-  "  access [page]   — open a section",
-  "  help            — show all commands",
-  "  clear           — clear terminal",
-  "  whoami          — about the operator",
-  "  credits         — how this was built",
+  "  access [page]  — open a section",
+  "  help           — show all commands",
+  "  clear          — clear terminal",
+  "  whoami         — about the operator",
+  "  credits        — how this was built",
   "",
   DIVIDER,
   "  Built by Ruhaan Bhargav using Next.js",
@@ -35,9 +35,9 @@ const BOOT_LINES = [
   "MOUNTING FILESYSTEMS... OK",
   "LOADING OPERATOR PROFILE...",
   DIVIDER,
-  "OPERATOR: RUHAAN BHARGAV",
-  "FIELD:    CS + MATHEMATICS",
-  "NODE:     PURDUE UNIVERSITY — Y2",
+  "OPERATOR:  RUHAAN BHARGAV",
+  "FIELD:     CS + MATHEMATICS",
+  "NODE:      PURDUE UNIVERSITY — Y2",
   "CLEARANCE: GRANTED",
   DIVIDER,
   "SYSTEM READY.",
@@ -48,21 +48,21 @@ const COMMANDS: Record<string, string[]> = {
     DIVIDER,
     "// AVAILABLE COMMANDS",
     "",
-    "  access [page]   — open a section",
-    "  help            — show all commands",
-    "  clear           — clear terminal",
-    "  whoami          — about the operator",
-    "  credits         — how this was built",
+    "  access [page]  — open a section",
+    "  help           — show all commands",
+    "  clear          — clear terminal",
+    "  whoami         — about the operator",
+    "  credits        — how this was built",
     DIVIDER,
   ],
   whoami: [
     DIVIDER,
-    "OPERATOR: RUHAAN BHARGAV",
-    "FIELD:    CS + MATHEMATICS @ PURDUE",
-    "YEAR:     SOPHOMORE (Y2)",
+    "OPERATOR:  RUHAAN BHARGAV",
+    "FIELD:     CS + MATHEMATICS @ PURDUE",
+    "YEAR:      SOPHOMORE (Y2)",
     "INTERESTS: QUANT FINANCE, PHYSICS,",
     "           CHESS, PHOTOGRAPHY",
-    "STATUS:   AVAILABLE FOR OPPORTUNITIES",
+    "STATUS:    AVAILABLE FOR OPPORTUNITIES",
     DIVIDER,
   ],
   credits: [
@@ -70,11 +70,11 @@ const COMMANDS: Record<string, string[]> = {
     "// HOW THIS WAS BUILT",
     "",
     "  Built from scratch by Ruhaan Bhargav",
-    "  Framework:  Next.js 15 (App Router)",
+    "  Framework:   Next.js 15 (App Router)",
     "  Deployment:  Vercel",
-    "  Styling:    Tailwind CSS",
-    "  Language:   TypeScript",
-    "  Black hole: HTML5 Canvas API",
+    "  Styling:     Tailwind CSS",
+    "  Language:    TypeScript",
+    "  Black hole:  HTML5 Canvas API",
     "",
     "  AI-assisted development using",
     "  Claude (Anthropic) + Gemini CLI",
@@ -104,6 +104,19 @@ export default function Terminal({ onNavigate }: { onNavigate: (page: string) =>
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [lines, loadingBar]);
+
+  // Handle focus
+  useEffect(() => {
+    const focusInput = () => {
+      if (!booting) inputRef.current?.focus();
+    };
+
+    window.addEventListener("focus", focusInput);
+    // Focus on mount/boot finish
+    if (!booting) focusInput();
+
+    return () => window.removeEventListener("focus", focusInput);
+  }, [booting]);
 
   // Boot sequence
   useEffect(() => {
@@ -234,7 +247,7 @@ export default function Terminal({ onNavigate }: { onNavigate: (page: string) =>
 
       {/* Output */}
       <div 
-        className="flex-grow overflow-y-auto px-4 pb-2 font-mono text-base text-[#00ff88] leading-relaxed whitespace-pre-wrap"
+        className="flex-grow overflow-y-auto px-4 pb-2 font-mono text-base text-[#00ff88] leading-relaxed"
         style={{ textShadow: "3px 3px 6px rgba(0,0,0,1), 0 0 10px rgba(0,0,0,1)" }}
       >
         {lines.map((line, i) => {

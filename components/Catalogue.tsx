@@ -78,7 +78,7 @@ export default function Catalogue({ onNavigate }: { onNavigate: (page: string) =
             INTERESTS:
           </h2>
           <div className="text-crt-green uppercase tracking-widest text-base leading-relaxed flex flex-col gap-0.5">
-            {["&gt QUANT FINANCE", "&gt PHYSICS", "&gt CHESS", "&gt PHOTOGRAPHY"].map((interest) => (
+            {["> QUANT FINANCE", "> PHYSICS", "> CHESS", "> PHOTOGRAPHY"].map((interest) => (
               <p key={interest}>{interest}</p>
             ))}
           </div>

@@ -14,8 +14,8 @@ export default function ProjectsWindow({ onClose }: { onClose: () => void }) {
     window.addEventListener("keydown", handler);
     
     // Loading sequence
-    const duration = 1200;
-    const interval = 30;
+    const duration = 600; // Faster loading (was 1200)
+    const interval = 20;
     const steps = duration / interval;
     let currentStep = 0;
 
@@ -25,7 +25,7 @@ export default function ProjectsWindow({ onClose }: { onClose: () => void }) {
       setProgress(p);
       if (currentStep >= steps) {
         clearInterval(timer);
-        setTimeout(() => setLoading(false), 200);
+        setTimeout(() => setLoading(false), 100);
       }
     }, interval);
 

@@ -27,6 +27,20 @@ export const projects: Project[] = [
     private: false,
     still_working: true,
   },
+    {
+    id: "ticketing",
+    name: "PURDUE GRAND PRIX TICKETING",
+    tagline: "Full-stack ticketing system for a 3,000-attendee event",
+    description:
+      "Working on a Full-stack ticketing platform built for the Purdue Grand Prix — a 3,000-attendee event. Features a normalized SQLite backend, QR code generation for contactless entry, and a secure authentication layer using cryptographic hashing and custom ID generation. Architected for extensibility with planned Stripe payment integration and API-based database scaling. Replacing entirely manual check-in processes.",
+    year: "2025",
+    tags: ["Python", "SQLite", "Flask", "QR", "Cryptography", "Unit Testing"],
+    image: "/projects/ticketing-demo.png",
+    github: "https://github.com/hub-ry/ticketing",
+    live: "",
+    private: true,
+    still_working: true,
+  },
   {
     id: "lead-lag",
     name: "LEAD-LAG PAIRS TRADING",
@@ -40,20 +54,6 @@ export const projects: Project[] = [
     live: "",
     private: false,
     still_working: false,
-  },
-  {
-    id: "ticketing",
-    name: "PURDUE GRAND PRIX TICKETING",
-    tagline: "Full-stack ticketing system for a 3,000-attendee event",
-    description:
-      "Working on a Full-stack ticketing platform built for the Purdue Grand Prix — a 3,000-attendee event. Features a normalized SQLite backend, QR code generation for contactless entry, and a secure authentication layer using cryptographic hashing and custom ID generation. Architected for extensibility with planned Stripe payment integration and API-based database scaling. Replacing entirely manual check-in processes.",
-    year: "2025",
-    tags: ["Python", "SQLite", "Flask", "QR", "Cryptography", "Unit Testing"],
-    image: "/projects/ticketing-demo.png",
-    github: "https://github.com/hub-ry/ticketing",
-    live: "",
-    private: true,
-    still_working: true,
   },
   {
     id: "ruhaan-os",
