@@ -50,21 +50,21 @@ export default function AboutWindow({ onClose }: { onClose: () => void }) {
 
   return (
     <div
-      className="absolute inset-0 z-30 flex flex-col font-mono overflow-hidden"
+      className="absolute inset-0 z-40 flex flex-col font-mono overflow-hidden animate-in fade-in zoom-in-95 duration-500"
       style={{ background: "rgba(0,0,0,0.96)" }}
     >
       {/* Header */}
-      <div className="flex items-center justify-between px-6 py-4 border-b border-[#00ff88] flex-shrink-0">
+      <div className="flex items-center justify-between px-6 py-4 border-b border-[#00ff88] flex-shrink-0 bg-black/40 backdrop-blur-sm">
         <div className="flex items-center gap-4">
           <span className="text-[#00ff88] text-lg tracking-[0.2em] font-bold">
             // ABOUT
           </span>
-          <span className="text-[#006633] text-xs tracking-widest">
+          <span className="text-[#006633] text-sm tracking-widest hidden sm:inline">
             OPERATOR: RUHAAN BHARGAV
           </span>
         </div>
         <div className="flex items-center gap-6">
-          <span className="text-[#006633] text-xs tracking-[0.2em]">
+          <span className="text-[#006633] text-xs tracking-[0.2em] hidden md:inline">
             ESC TO EXIT
           </span>
           <button
@@ -76,39 +76,41 @@ export default function AboutWindow({ onClose }: { onClose: () => void }) {
         </div>
       </div>
 
-      {/* Content — single screen, no scroll */}
-      <div className="flex-grow flex flex-col justify-center px-10 py-6 gap-8">
-        {/* Top divider */}
-        <div className="border-t border-[#003322]" />
+      {/* Content — scrollable for smaller screens, matches projects window flow */}
+      <div className="flex-grow overflow-y-auto px-6 py-10 custom-scrollbar">
+        <div className="max-w-4xl mx-auto flex flex-col gap-10">
+          {/* Top divider */}
+          <div className="border-t border-[#003322]" />
 
-        {/* Three sections */}
-        {ABOUT_SECTIONS.map((section) => (
-          <div key={section.label} className="flex flex-col gap-2">
-            <span className="text-[#00ff88] text-xs tracking-[0.25em] opacity-80">
-              {section.label}
-            </span>
-            <div className="flex flex-col gap-0.5 pl-2 border-l border-[#003322]">
-              {section.lines.map((line, i) => (
-                <span
-                  key={i}
-                  className="text-[#00aa55] text-sm tracking-wide leading-relaxed"
-                >
-                  {line}
-                </span>
-              ))}
+          {/* Three sections */}
+          {ABOUT_SECTIONS.map((section) => (
+            <div key={section.label} className="flex flex-col gap-4">
+              <span className="text-[#00ff88] text-xs tracking-[0.25em] opacity-80">
+                {section.label}
+              </span>
+              <div className="flex flex-col gap-1 pl-4 border-l border-[#003322]">
+                {section.lines.map((line, i) => (
+                  <span
+                    key={i}
+                    className="text-[#00aa55] text-base md:text-lg tracking-wide leading-relaxed"
+                  >
+                    {line}
+                  </span>
+                ))}
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
 
-        {/* Bottom divider + signature */}
-        <div className="border-t border-[#003322]" />
-        <div className="flex items-center justify-between">
-          <span className="text-[#003322] text-xs tracking-[0.3em]">
-            RUHAAN_OS v1.0 // OPERATOR_PROFILE
-          </span>
-          <span className="text-[#003322] text-xs tracking-[0.3em]">
-            PURDUE UNIVERSITY — Y2 // CS + MATH
-          </span>
+          {/* Bottom divider + signature */}
+          <div className="border-t border-[#003322] pt-6" />
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <span className="text-[#003322] text-xs tracking-[0.3em]">
+              RUHAAN_OS v1.0 // OPERATOR_PROFILE
+            </span>
+            <span className="text-[#003322] text-xs tracking-[0.3em]">
+              PURDUE UNIVERSITY — Y2 // CS + MATH
+            </span>
+          </div>
         </div>
       </div>
     </div>
