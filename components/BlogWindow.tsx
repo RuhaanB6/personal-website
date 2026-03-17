@@ -88,7 +88,7 @@ export default function BlogWindow({ onClose }: { onClose: () => void }) {
           <div className="absolute -top-1 -left-1 w-2 h-2 bg-[#00ff88]" />
           <div className="absolute -bottom-1 -right-1 w-2 h-2 bg-[#00ff88]" />
           
-          <h2 className="text-[#00ff88] text-2xl tracking-[0.3em] font-bold uppercase animate-pulse">
+          <h2 className="text-[#00ff88] text-2xl tracking-[0.3em] font-bold uppercase">
             In Production
           </h2>
           
@@ -100,7 +100,7 @@ export default function BlogWindow({ onClose }: { onClose: () => void }) {
           </p>
           
           <div className="mt-4 flex flex-col items-center gap-2">
-            <span className="text-[#003322] text-[10px] tracking-[0.5em] uppercase animate-bounce">
+            <span className="text-[#003322] text-[10px] tracking-[0.5em] uppercase">
               Waiting for uplink...
             </span>
           </div>
