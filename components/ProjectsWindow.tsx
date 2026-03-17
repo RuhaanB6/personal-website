@@ -1,20 +1,76 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { projects } from "@/data/projects";
 
 export default function ProjectsWindow({ onClose }: { onClose: () => void }) {
+  const [loading, setLoading] = useState(true);
+  const [progress, setProgress] = useState(0);
+
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
     };
     window.addEventListener("keydown", handler);
-    return () => window.removeEventListener("keydown", handler);
+    
+    // Loading sequence
+    const duration = 1200;
+    const interval = 30;
+    const steps = duration / interval;
+    let currentStep = 0;
+
+    const timer = setInterval(() => {
+      currentStep++;
+      const p = Math.min(Math.round((currentStep / steps) * 100), 100);
+      setProgress(p);
+      if (currentStep >= steps) {
+        clearInterval(timer);
+        setTimeout(() => setLoading(false), 200);
+      }
+    }, interval);
+
+    return () => {
+      window.removeEventListener("keydown", handler);
+      clearInterval(timer);
+    };
   }, [onClose]);
+
+  if (loading) {
+    return (
+      <div
+        className="absolute inset-0 z-40 flex flex-col items-center justify-center font-mono"
+        style={{ background: "rgba(0,0,0,0.98)" }}
+      >
+        <div className="flex flex-col gap-4 w-64">
+          <div className="flex justify-between text-[#00ff88] text-xs tracking-widest">
+            <span>INITIALIZING CATALOGUE...</span>
+            <span>{progress}%</span>
+          </div>
+          <div className="h-1 w-full border border-[#003322] bg-black overflow-hidden relative">
+            <div 
+              className="h-full bg-[#00ff88] transition-all duration-75 ease-out shadow-[0_0_10px_#00ff88]"
+              style={{ width: `${progress}%` }}
+            />
+          </div>
+          <div className="flex flex-col gap-1">
+            <span className="text-[#006633] text-[10px] tracking-widest uppercase">
+              {progress > 20 ? "> MOUNTING DATA_FILES" : ""}
+            </span>
+            <span className="text-[#006633] text-[10px] tracking-widest uppercase">
+              {progress > 50 ? "> DECRYPTING METADATA" : ""}
+            </span>
+            <span className="text-[#006633] text-[10px] tracking-widest uppercase">
+              {progress > 85 ? "> RENDER_BUFFER_READY" : ""}
+            </span>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div
-      className="absolute inset-0 z-40 flex flex-col font-mono overflow-hidden"
+      className="absolute inset-0 z-40 flex flex-col font-mono overflow-hidden animate-in fade-in zoom-in-95 duration-500"
       style={{ background: "rgba(0,0,0,0.96)" }}
     >
       {/* Header */}
