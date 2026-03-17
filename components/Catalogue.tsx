@@ -58,6 +58,20 @@ export default function Catalogue({ onNavigate }: { onNavigate: (page: string) =
             LINKEDIN ↗
           </span>
         </a>
+
+        <a 
+          href="https://www.instagram.com/ruhaan_bhargav/"
+          target="_blank" 
+          rel="noopener noreferrer"
+          className={navItemClass}
+        >
+          <span className="text-crt-dim group-hover:text-crt-green transition-colors duration-150">
+            {">"}
+          </span>
+          <span className="text-crt-dim group-hover:text-crt-green uppercase tracking-widest text-base transition-colors duration-150">
+            INSTAGRAM ↗
+          </span>
+        </a>
       </div>
 
       {/* Operator & Interests Section */}
