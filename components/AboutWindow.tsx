@@ -8,16 +8,15 @@ const ABOUT_SECTIONS = [
     lines: [
       "Sophomore at Purdue doing CS and Math — two degrees",
       "because I couldn't pick one and honestly they're",
-      "the same thing with different notation. Originally",
-      "from India, grew up across a few countries, ended",
-      "up in West Lafayette which is somehow both freezing",
-      "and flat at the same time.",
+      "the same thing with different notation and slightly",
+      "varied ideas. Originally from India, grew up in India",
+      "and China, ended up in West Lafayette because of University",
     ],
   },
   {
     label: "// WHAT I'M INTO",
     lines: [
-      "Quant finance because markets are just applied math",
+      "Quant finance because markets are applied theoretical math",
       "with real consequences. Physics because the universe",
       "is suspiciously elegant. Chess because losing to a",
       "computer at 2am is a humbling experience. Photography",
@@ -27,14 +26,14 @@ const ABOUT_SECTIONS = [
     ],
   },
   {
-    label: "// HONEST BIT",
+    label: "// A BLURB BECAUSE WHY NOT",
     lines: [
       "I speak four languages, write code in about eight,",
-      "and I'm still figuring out which problems are worth",
-      "solving. Right now I'm interested in systems that",
-      "move fast — trading engines, embedded firmware,",
-      "things where being wrong is expensive. This website",
-      "took longer than I'd like to admit.",
+      "and I'm still figuring out which how to manage my time",
+      "between tasks. Right now I'm interested in systems that",
+      "move fast: trading engines, embedded firmware,",
+      "things where being wrong is expensive. I would like to add",
+      "that this website took longer than I'd like to admit.",
     ],
   },
 ];
