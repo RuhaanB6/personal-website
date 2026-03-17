@@ -18,7 +18,7 @@ export const projects: Project[] = [
     name: "ORDER BOOK MATCHING ENGINE",
     tagline: "Low-latency order book simulator for equity markets",
     description:
-      "Building a high-performance order book simulator processing 10,000+ orders/second with price-time priority matching. Benchmarks heap, sorted list, and deque-based priority queue implementations for throughput optimization. Implements multivariate Hawkes processes to model self-exciting order flow — capturing realistic clustering and volatility dynamics observed in live equity markets. Integrated with Alpaca API for real-time SPY data ingestion to validate simulator accuracy against live conditions.",
+      "I'm currently building a high-performance matching engine that can process over 10,000 orders per second. I've been benchmarking different data structures, like heaps and sorted lists, to optimize throughput as much as possible. Right now, I'm implementing multivariate Hawkes processes to model self-exciting order flow and capture realistic market volatility. I'm also wiring it up to the Alpaca API to test everything against live SPY data.",
     year: "2025",
     tags: ["Python", "Alpaca API", "NumPy", "Hawkes Process"],
     image: "/projects/work-in-progress.png",
@@ -27,26 +27,12 @@ export const projects: Project[] = [
     private: false,
     still_working: true,
   },
-    {
-    id: "ticketing",
-    name: "PURDUE GRAND PRIX TICKETING",
-    tagline: "Full-stack ticketing system for a 3,000-attendee event",
-    description:
-      "Working on a Full-stack ticketing platform built for the Purdue Grand Prix — a 3,000-attendee event. Features a normalized SQLite backend, QR code generation for contactless entry, and a secure authentication layer using cryptographic hashing and custom ID generation. Architected for extensibility with planned Stripe payment integration and API-based database scaling. Replacing entirely manual check-in processes.",
-    year: "2025",
-    tags: ["Python", "SQLite", "Flask", "QR", "Cryptography", "Unit Testing"],
-    image: "/projects/ticketing-demo.png",
-    github: "https://github.com/hub-ry/ticketing",
-    live: "",
-    private: true,
-    still_working: true,
-  },
   {
     id: "lead-lag",
     name: "LEAD-LAG PAIRS TRADING",
     tagline: "Statistical arbitrage strategy on large-cap tech equities",
     description:
-      "Investigated time-lagged correlations between large-cap tech leaders (AAPL, MSFT, NVDA) and mid-cap laggers (AMD, INTC, MU) using 3 years of daily price data. Built a statistical pipeline computing Pearson correlations with p-value significance testing across all 9 pairs at lag windows of 1-7 days. Designed a trading strategy that enters positions in lagging stocks upon leader movement, analyzing optimal lag periods and correlation decay to maximize risk-adjusted returns.",
+      "I investigated time-lagged correlations between tech leaders like NVDA and mid-cap laggers using three years of price data. I built a pipeline to compute Pearson correlations across various lag windows to see how quickly one stock follows another. Based on that, I designed a strategy that enters positions in lagging stocks when the leaders move, focusing on maximizing returns while accounting for correlation decay.",
     year: "2026",
     tags: ["Python", "pandas", "scipy", "yfinance", "seaborn"],
     image: "/projects/lead-lag-demo.png",
@@ -56,11 +42,25 @@ export const projects: Project[] = [
     still_working: false,
   },
   {
+    id: "ticketing",
+    name: "PURDUE GRAND PRIX TICKETING",
+    tagline: "Full-stack ticketing system for a 3,000-attendee event",
+    description:
+      "I'm currently developing a full-stack ticketing platform for the Purdue Grand Prix, an event with about 3,000 attendees. It's a major upgrade from their old manual processes. I've already built a normalized SQLite backend and a secure auth layer with cryptographic hashing, and right now I'm focused on finalizing the QR-based check-in system and custom ID generation.",
+    year: "2025",
+    tags: ["Python", "SQLite", "Flask", "QR", "Cryptography", "Unit Testing"],
+    image: "/projects/ticketing-demo.png",
+    github: "https://github.com/hub-ry/ticketing",
+    live: "",
+    private: true,
+    still_working: true,
+  },
+  {
     id: "ruhaan-os",
     name: "RUHAAN_OS",
     tagline: "This portfolio — a personal OS built from scratch",
     description:
-      "A personal portfolio designed as a retro-futurist terminal OS. Built entirely from scratch — no templates, no themes. Features an animated black hole rendered purely in HTML5 Canvas API with physically-accurate accretion disk layering, a functional command-line interface with a boot sequence, and a data-panel aesthetic inspired by scientific instrument displays. AI-assisted development using Claude and Gemini CLI, with all design decisions and architecture by Ruhaan.",
+      "I designed this portfolio as a retro-futurist terminal OS. I built it from scratch without templates, including the black hole background which I rendered using the Canvas API. I used AI assistance during the development process (you can find more about that by running the `credits` command), but all the architectural and design decisions are my own.",
     year: "2026",
     tags: ["Next.js", "TypeScript", "Tailwind CSS", "Canvas API"],
     image: "/projects/ruhaan-os-demo.png",
@@ -74,7 +74,7 @@ export const projects: Project[] = [
     name: "GITSTAGRAM",
     tagline: "A full-stack social media platform built from scratch in Java",
     description:
-      "A fully functional Instagram clone built as a team of 4 for CS180 at Purdue. Features user creation, post management, comments, likes/dislikes, following, and blocking — all persisted via a custom file-based database system. Built on a client-server architecture with socket communication over localhost:8080, supporting multiple concurrent clients via multithreading and synchronized thread-safe blocks to prevent race conditions. Phase 3 added a complete Java Swing GUI client on top of the terminal interface.",
+      "Working in a team of four, we built a fully functional Instagram clone in Java. It features a custom file-based database and a multithreaded client-server architecture using raw sockets. Dealing with thread-safe blocks to prevent race conditions was a steep learning curve, but it was satisfying to see the project grow from a basic terminal app into a full Java Swing GUI.",
     year: "2024",
     tags: ["Java", "Sockets", "Multithreading", "JUnit", "Swing", "MVC"],
     image: "/projects/gitstagram-demo.png",
