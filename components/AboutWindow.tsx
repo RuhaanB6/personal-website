@@ -50,7 +50,7 @@ export default function AboutWindow({ onClose }: { onClose: () => void }) {
     window.addEventListener("keydown", handler);
 
     // Loading sequence
-    const duration = 600;
+    const duration = 400;
     const interval = 20;
     const steps = duration / interval;
     let currentStep = 0;

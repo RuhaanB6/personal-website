@@ -14,7 +14,7 @@ export default function ProjectsWindow({ onClose }: { onClose: () => void }) {
     window.addEventListener("keydown", handler);
     
     // Loading sequence
-    const duration = 600; // Faster loading (was 1200)
+    const duration = 400;
     const interval = 20;
     const steps = duration / interval;
     let currentStep = 0;

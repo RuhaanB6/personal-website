@@ -28,7 +28,7 @@ export default function ResumeWindow({ onClose }: { onClose: () => void }) {
     window.addEventListener("keydown", handler);
 
     // Loading sequence
-    const duration = 500;
+    const duration = 400;
     const interval = 20;
     const steps = duration / interval;
     let currentStep = 0;
