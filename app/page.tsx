@@ -12,6 +12,7 @@ import ProjectsWindow from "@/components/ProjectsWindow";
 import AboutWindow from "@/components/AboutWindow";
 import ResumeWindow from "@/components/ResumeWindow";
 import PhotosWindow from "@/components/PhotosWindow";
+import BlogWindow from "@/components/BlogWindow";
 
 const BlackHole = dynamic(() => import("@/components/BlackHole"), {
   ssr: false,
@@ -61,6 +62,9 @@ export default function Home() {
           )}
           {activeWindow === "photography" && (
             <PhotosWindow onClose={() => setActiveWindow(null)} />
+          )}
+          {activeWindow === "blog" && (
+            <BlogWindow onClose={() => setActiveWindow(null)} />
           )}
         </section>
       </div>
