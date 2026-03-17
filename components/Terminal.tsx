@@ -99,23 +99,60 @@ export default function Terminal({ onNavigate }: { onNavigate: (page: string) =>
   const [input, setInput] = useState("");
   const bottomRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const terminalRef = useRef<HTMLDivElement>(null);
 
   // Auto scroll to bottom
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [lines, loadingBar]);
 
-  // Handle focus
+  // Handle focus and return from other windows
   useEffect(() => {
     const focusInput = () => {
       if (!booting) inputRef.current?.focus();
     };
 
+    // Focus on window focus
     window.addEventListener("focus", focusInput);
-    // Focus on mount/boot finish
+
+    // Focus when user starts typing anywhere (if not already focused on an input)
+    const handleGlobalKeyDown = (e: KeyboardEvent) => {
+      if (booting) return;
+      if (
+        document.activeElement?.tagName !== "INPUT" &&
+        document.activeElement?.tagName !== "TEXTAREA" &&
+        !e.ctrlKey &&
+        !e.metaKey &&
+        !e.altKey &&
+        e.key.length === 1
+      ) {
+        focusInput();
+      }
+    };
+    window.addEventListener("keydown", handleGlobalKeyDown);
+
+    // Watch for when other windows (About/Projects) are closed
+    // This works by observing when siblings are removed from the parent section
+    const observer = new MutationObserver((mutations) => {
+      const modalRemoved = mutations.some((m) => m.removedNodes.length > 0);
+      if (modalRemoved) {
+        // Short delay to ensure DOM is updated and focus isn't trapped
+        setTimeout(focusInput, 50);
+      }
+    });
+
+    if (terminalRef.current?.parentElement) {
+      observer.observe(terminalRef.current.parentElement, { childList: true });
+    }
+
+    // Initial focus after boot finish
     if (!booting) focusInput();
 
-    return () => window.removeEventListener("focus", focusInput);
+    return () => {
+      window.removeEventListener("focus", focusInput);
+      window.removeEventListener("keydown", handleGlobalKeyDown);
+      observer.disconnect();
+    };
   }, [booting]);
 
   // Boot sequence
@@ -235,6 +272,7 @@ export default function Terminal({ onNavigate }: { onNavigate: (page: string) =>
 
   return (
     <div
+      ref={terminalRef}
       className="flex flex-col h-full overflow-hidden"
       onClick={() => inputRef.current?.focus()}
     >
