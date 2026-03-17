@@ -1,4 +1,6 @@
-export default function Catalogue() {
+"use client";
+
+export default function Catalogue({ onNavigate }: { onNavigate: (page: string) => void }) {
   const items = ["about", "projects", "blog", "resume", "photos"];
 
   const navItemClass = "group cursor-pointer flex items-center gap-2 border-l-2 border-transparent hover:border-crt-green hover:pl-2 transition-all duration-150";
@@ -15,6 +17,7 @@ export default function Catalogue() {
           <div
             key={item}
             className={navItemClass}
+            onClick={() => onNavigate(item)}
           >
             <span className="text-crt-dim group-hover:text-crt-green transition-colors duration-150">
               {">"}
@@ -75,8 +78,8 @@ export default function Catalogue() {
             INTERESTS:
           </h2>
           <div className="text-crt-green uppercase tracking-widest text-base leading-relaxed flex flex-col gap-0.5">
-            {["QUANT FINANCE", "PHYSICS", "CHESS", "PHOTOGRAPHY"].map((interest) => (
-              <p key={interest}>{">"} {interest}</p>
+            {["&gt QUANT FINANCE", "&gt PHYSICS", "&gt CHESS", "&gt PHOTOGRAPHY"].map((interest) => (
+              <p key={interest}>{interest}</p>
             ))}
           </div>
         </div>
@@ -85,4 +88,3 @@ export default function Catalogue() {
       </div>
       );
       }
-

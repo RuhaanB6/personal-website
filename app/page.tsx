@@ -1,19 +1,22 @@
 "use client";
 
+import { useState } from "react";
 // Adding the speed thingie to check speed on vercel
-
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import dynamic from "next/dynamic";
 import Catalogue from "@/components/Catalogue";
 import Terminal from "@/components/Terminal";
 import TopStrip from "@/components/TopStrip";
 import BottomStrip from "@/components/BottomStrip";
+import ProjectsWindow from "@/components/ProjectsWindow";
 
 const BlackHole = dynamic(() => import("@/components/BlackHole"), {
   ssr: false,
 });
 
 export default function Home() {
+  const [activeWindow, setActiveWindow] = useState<string | null>(null);
+
   return (
     <main
       className="h-screen w-screen bg-black flex flex-col overflow-hidden relative font-mono"
@@ -40,10 +43,13 @@ export default function Home() {
         <BlackHole />
 
         <aside className="w-[30%] border-r border-[#00ff88] relative z-10 bg-transparent">
-          <Catalogue />
+          <Catalogue onNavigate={setActiveWindow} />
         </aside>
         <section className="w-[70%] relative z-10 bg-transparent">
-          <Terminal />
+          <Terminal onNavigate={setActiveWindow} />
+          {activeWindow === "projects" && (
+            <ProjectsWindow onClose={() => setActiveWindow(null)} />
+          )}
         </section>
       </div>
 

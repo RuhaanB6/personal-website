@@ -92,7 +92,7 @@ const COMMANDS: Record<string, string[]> = {
 
 const VALID_PAGES = ["about", "projects", "blog", "resume", "photos"];
 
-export default function Terminal() {
+export default function Terminal({ onNavigate }: { onNavigate: (page: string) => void }) {
   const [lines, setLines] = useState<string[]>([]);
   const [booting, setBooting] = useState(true);
   const [loadingBar, setLoadingBar] = useState(0);
@@ -196,9 +196,9 @@ export default function Terminal() {
           echo,
           `> ACCESSING ${page.toUpperCase()}...`,
           `  LOADING SECTION... OK`,
-          `  [navigation to ${page} coming soon]`,
           "",
         ]);
+        onNavigate(page);
       } else {
         setLines((prev) => [
           ...prev,
@@ -240,8 +240,7 @@ export default function Terminal() {
         {lines.map((line, i) => {
           const isGitHub = line.includes("github.com/RuhaanB6");
           const isCommandOutput = line.trim().startsWith(">") || 
-                                  line.startsWith("  LOADING") || 
-                                  line.includes("[navigation to");
+                                  line.startsWith("  LOADING");
           
           return (
             <div
