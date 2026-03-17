@@ -217,6 +217,7 @@ export default function BlackHole() {
         width: "100%",
         height: "100%",
         zIndex: 0,
+        opacity: 0.85,
       }}
     />
   );
