@@ -10,7 +10,8 @@ const ABOUT_SECTIONS = [
       "because I couldn't pick one and honestly they're",
       "the same thing with different notation and slightly",
       "varied ideas. Originally from India, grew up in India",
-      "and China, ended up in West Lafayette because of University",
+      "and China, and ended up in West Lafayette because of",
+      "University... also because I just love corn fields",
     ],
   },
   {
@@ -20,7 +21,7 @@ const ABOUT_SECTIONS = [
       "with real consequences. Physics because the universe",
       "is suspiciously elegant. Chess because losing to a",
       "computer at 2am is a humbling experience. Photography",
-      "because not everything needs to be optimized.",
+      "because not everything needs to be proccessed.",
       "Poetry because sometimes math doesn't cut it and you",
       "need a different kind of precision.",
     ],
@@ -28,12 +29,12 @@ const ABOUT_SECTIONS = [
   {
     label: "// A BLURB BECAUSE WHY NOT",
     lines: [
-      "I speak four languages, write code in about eight,",
+      "I speak four languages, program in about eight,",
       "and I'm still figuring out which how to manage my time",
       "between tasks. Right now I'm interested in systems that",
       "move fast: trading engines, embedded firmware,",
-      "things where being wrong is expensive. I would like to add",
-      "that this website took longer than I'd like to admit.",
+      "things where being wrong is expensive. I would also like",
+      "to add that this website took longer than I'd like to admit.",
     ],
   },
 ];
