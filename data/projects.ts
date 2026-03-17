@@ -8,6 +8,8 @@ export interface Project {
   image: string;
   github: string;
   live: string;
+  private: boolean;
+  still_working: boolean;
 }
 
 export const projects: Project[] = [
@@ -19,9 +21,11 @@ export const projects: Project[] = [
       "Building a high-performance order book simulator processing 10,000+ orders/second with price-time priority matching. Benchmarks heap, sorted list, and deque-based priority queue implementations for throughput optimization. Implements multivariate Hawkes processes to model self-exciting order flow — capturing realistic clustering and volatility dynamics observed in live equity markets. Integrated with Alpaca API for real-time SPY data ingestion to validate simulator accuracy against live conditions.",
     year: "2025",
     tags: ["Python", "Alpaca API", "NumPy", "Hawkes Process"],
-    image: "/projects/order-book-demo.png",
+    image: "/projects/work-in-progress.png",
     github: "https://github.com/RuhaanB6/Market_Book_Simulator-Hawkes",
     live: "",
+    private: false,
+    still_working: true,
   },
   {
     id: "lead-lag",
@@ -34,18 +38,22 @@ export const projects: Project[] = [
     image: "/projects/lead-lag-demo.png",
     github: "https://github.com/RuhaanB6/lead-lags-pairs-trading-strategy",
     live: "",
+    private: false,
+    still_working: false,
   },
   {
     id: "ticketing",
     name: "PURDUE GRAND PRIX TICKETING",
     tagline: "Full-stack ticketing system for a 3,000-attendee event",
     description:
-      "Full-stack ticketing platform built for the Purdue Grand Prix — a 3,000-attendee event. Features a normalized SQLite backend, QR code generation for contactless entry, and a secure authentication layer using cryptographic hashing and custom ID generation. Architected for extensibility with planned Stripe payment integration and API-based database scaling. Replacing entirely manual check-in processes.",
+      "Working on a Full-stack ticketing platform built for the Purdue Grand Prix — a 3,000-attendee event. Features a normalized SQLite backend, QR code generation for contactless entry, and a secure authentication layer using cryptographic hashing and custom ID generation. Architected for extensibility with planned Stripe payment integration and API-based database scaling. Replacing entirely manual check-in processes.",
     year: "2025",
     tags: ["Python", "SQLite", "Flask", "QR", "Cryptography", "Unit Testing"],
     image: "/projects/ticketing-demo.png",
     github: "https://github.com/hub-ry/ticketing",
     live: "",
+    private: true,
+    still_working: true,
   },
   {
     id: "ruhaan-os",
@@ -58,6 +66,8 @@ export const projects: Project[] = [
     image: "/projects/ruhaan-os-demo.png",
     github: "https://github.com/RuhaanB6/personal-website",
     live: "https://personal-website-three-rosy-41.vercel.app",
+    private: false,
+    still_working: true,
   },
   {
     id: "gitstagram",
@@ -70,5 +80,7 @@ export const projects: Project[] = [
     image: "/projects/gitstagram-demo.png",
     github: "https://github.com/RuhaanB6/CS180_TeamProject",
     live: "",
+    private: true,
+    still_working: false,
   },
 ];
