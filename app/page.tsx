@@ -11,6 +11,7 @@ import BottomStrip from "@/components/BottomStrip";
 import ProjectsWindow from "@/components/ProjectsWindow";
 import AboutWindow from "@/components/AboutWindow";
 import ResumeWindow from "@/components/ResumeWindow";
+import PhotosWindow from "@/components/PhotosWindow";
 
 const BlackHole = dynamic(() => import("@/components/BlackHole"), {
   ssr: false,
@@ -57,6 +58,9 @@ export default function Home() {
           )}
           {activeWindow === "resume" && (
             <ResumeWindow onClose={() => setActiveWindow(null)} />
+          )}
+          {activeWindow === "photography" && (
+            <PhotosWindow onClose={() => setActiveWindow(null)} />
           )}
         </section>
       </div>

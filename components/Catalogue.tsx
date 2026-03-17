@@ -1,7 +1,7 @@
 "use client";
 
 export default function Catalogue({ onNavigate }: { onNavigate: (page: string) => void }) {
-  const items = ["about", "projects", "blog", "resume", "photos"];
+  const items = ["about", "projects", "blog", "resume", "photography"];
 
   const navItemClass = "group cursor-pointer flex items-center gap-2 border-l-2 border-transparent hover:border-crt-green hover:pl-2 transition-all duration-150";
 
