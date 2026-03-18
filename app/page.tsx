@@ -42,14 +42,25 @@ export default function Home() {
       <TopStrip />
 
       {/* Main panels container */}
-      <div className="flex flex-grow overflow-hidden border-t border-[#00ff88] relative">
+      <div className="flex flex-grow flex-col md:flex-row portrait:flex-col landscape:flex-row overflow-hidden border-t border-[#00ff88] relative">
         {/* Animated Black Hole Background */}
         <BlackHole />
 
-        <aside className="w-[30%] border-r border-[#00ff88] relative z-10 bg-transparent">
+        <aside 
+          className={`
+            border-b md:border-b-0 md:border-r border-[#00ff88] relative z-10 bg-transparent transition-all duration-300
+            ${activeWindow ? 'hidden md:block md:w-[30%] portrait:hidden landscape:md:block' : 'w-full h-full md:w-[30%]'}
+          `}
+        >
           <Catalogue onNavigate={setActiveWindow} />
         </aside>
-        <section className="w-[70%] relative z-10 bg-transparent">
+        
+        <section 
+          className={`
+            relative z-10 bg-transparent transition-all duration-300
+            ${activeWindow ? 'w-full h-full md:w-[70%]' : 'hidden md:block md:w-[70%] portrait:hidden landscape:md:block'}
+          `}
+        >
           <Terminal onNavigate={setActiveWindow} />
           {activeWindow === "projects" && (
             <ProjectsWindow onClose={() => setActiveWindow(null)} />

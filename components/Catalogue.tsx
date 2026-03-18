@@ -6,7 +6,7 @@ export default function Catalogue({ onNavigate }: { onNavigate: (page: string) =
   const navItemClass = "group cursor-pointer flex items-center gap-2 border-l-2 border-transparent hover:border-crt-green hover:pl-2 transition-all duration-150";
 
   return (
-    <div className="flex flex-col h-full border-r border-crt-green p-4 overflow-hidden">
+    <div className="flex flex-col h-full border-r border-crt-green p-4 overflow-y-auto custom-scrollbar">
       <div className="mb-6">
         <h2 className="text-crt-green font-mono text-sm tracking-wider opacity-80">
           // CATALOGUE
@@ -60,7 +60,7 @@ export default function Catalogue({ onNavigate }: { onNavigate: (page: string) =
         </a>
 
         <a 
-          href="https://www.instagram.com/ruhaan_bhargav/"
+          href="https://www.instagram.com/ruhaanb.jpg/"
           target="_blank" 
           rel="noopener noreferrer"
           className={navItemClass}
@@ -98,7 +98,7 @@ export default function Catalogue({ onNavigate }: { onNavigate: (page: string) =
           </div>
         </div>
       </div>
-      <div className="mt-8 border-t border-[#003322]" />
-      </div>
-      );
-      }
+      <div className="mt-8 border-t border-[#003322] min-h-[20px]" />
+    </div>
+  );
+}

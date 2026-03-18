@@ -24,10 +24,10 @@ export default function BottomStrip() {
     <div className="w-full h-8 flex items-center justify-between px-6 text-xs-data text-crt-green font-mono whitespace-nowrap overflow-hidden">
       <div className="flex items-center gap-6">
         <span>V:1.0.0</span>
-        <span className="opacity-50">══</span>
-        <span>CS+MATH@PURDUE</span>
-        <span className="opacity-50">══</span>
-        <span>[SECURE_CONN]</span>
+        <span className="opacity-50 hidden md:inline">══</span>
+        <span className="hidden md:inline">CS+MATH@PURDUE</span>
+        <span className="opacity-50 hidden md:inline">══</span>
+        <span className="hidden md:inline">[SECURE_CONN]</span>
       </div>
       <div className="flex items-center gap-6">
         <span>{date || "LOADING..." }</span>

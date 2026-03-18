@@ -23,14 +23,14 @@ export default function TopStrip() {
     <div className="w-full h-8 flex items-center justify-between px-6 text-xs-data text-crt-green font-mono whitespace-nowrap overflow-hidden">
       <div className="flex items-center gap-4">
         <span>RUHAAN_OS v1.0</span>
-        <span className="opacity-50">═══</span>
-        <span>NODE:PUR-01</span>
-        <span className="opacity-50">═══</span>
-        <span>LAT:40.4259°N LON:86.9081°W</span>
+        <span className="opacity-50 hidden md:inline">═══</span>
+        <span className="hidden md:inline">NODE:PUR-01</span>
+        <span className="opacity-50 hidden md:inline">═══</span>
+        <span className="hidden md:inline">LAT:40.4259°N LON:86.9081°W</span>
         <span className="opacity-50">═══</span>
         <span>UPTIME:{formatUptime(uptime)}</span>
       </div>
-      <div className="flex items-center gap-4">
+      <div className="hidden md:flex items-center gap-4">
         <span className="opacity-50 text-[8px]">══════════════════</span>
         <span>SIG:[██████░░░░]</span>
       </div>
