@@ -72,20 +72,6 @@ export default function Catalogue({ onNavigate }: { onNavigate: (page: string) =
             EMAIL ME ↗
           </span>
         </a>
-
-        <a 
-          href="https://www.instagram.com/ruhaanb.jpg/"
-          target="_blank" 
-          rel="noopener noreferrer"
-          className={navItemClass}
-        >
-          <span className="text-crt-dim group-hover:text-crt-green transition-colors duration-150 text-sm sm:text-base">
-            {">"}
-          </span>
-          <span className="text-crt-dim group-hover:text-crt-green uppercase tracking-widest text-sm sm:text-base transition-colors duration-150">
-            INSTAGRAM ↗
-          </span>
-        </a>
       </div>
 
       {/* Operator & Interests Section */}
