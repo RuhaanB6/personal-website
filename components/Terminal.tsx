@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const DIVIDER = "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━";
+const DIVIDER = "────────────────────────────────────";
 
 const WELCOME = [
   DIVIDER,
@@ -175,10 +175,10 @@ export default function Terminal({ onNavigate }: { onNavigate: (page: string) =>
           // Animate loading bar (finer middle ground: 35ms)
           await new Promise<void>((res) => {
             let filled = 0;
-            const total = 20;
+            const total = 15;
             setLines((prev) => [
               ...prev,
-              `[░░░░░░░░░░░░░░░░░░░░] 0%`,
+              `[░░░░░░░░░░░░░░░] 0%`,
             ]);
             const interval = setInterval(() => {
               if (cancelled) { clearInterval(interval); res(); return; }
@@ -195,7 +195,7 @@ export default function Terminal({ onNavigate }: { onNavigate: (page: string) =>
                 clearInterval(interval);
                 setTimeout(res, 180); // finer middle ground
               }
-            }, 35);
+            }, 45);
           });
           cursor += 90; // finer middle ground
         } else {
@@ -278,14 +278,14 @@ export default function Terminal({ onNavigate }: { onNavigate: (page: string) =>
     >
       {/* Header */}
       <div className="p-4 pb-2">
-        <h2 className="text-[#00ff88] font-mono text-sm tracking-wider opacity-80">
+        <h2 className="text-[#00ff88] font-mono text-xs sm:text-sm tracking-wider opacity-80">
           // TERMINAL
         </h2>
       </div>
 
       {/* Output */}
       <div 
-        className="flex-grow overflow-y-auto px-4 pb-2 font-mono text-base text-[#00ff88] leading-relaxed"
+        className="flex-grow overflow-y-auto px-4 pb-2 font-mono text-sm sm:text-base text-[#00ff88] leading-relaxed custom-scrollbar overflow-x-hidden"
         style={{ textShadow: "3px 3px 6px rgba(0,0,0,1), 0 0 10px rgba(0,0,0,1)" }}
       >
         {lines.map((line, i) => {
@@ -296,7 +296,7 @@ export default function Terminal({ onNavigate }: { onNavigate: (page: string) =>
           return (
             <div
               key={i}
-              className={isCommandOutput ? "text-[#00aa55]" : "text-[#00ff88]"}
+              className={`${isCommandOutput ? "text-[#00aa55]" : "text-[#00ff88]"} break-words whitespace-pre-wrap`}
             >
               {line === "" ? (
                 <br />
@@ -331,7 +331,7 @@ export default function Terminal({ onNavigate }: { onNavigate: (page: string) =>
       {/* Input */}
       {!booting && (
         <div 
-          className="px-4 py-3 border-t border-[#003322] flex items-center gap-2 font-mono text-base text-[#00ff88]"
+          className="px-4 py-3 border-t border-[#003322] flex items-center gap-2 font-mono text-sm sm:text-base text-[#00ff88]"
           style={{ textShadow: "2px 2px 4px rgba(0,0,0,0.8)" }}
         >
           <span className="opacity-70 whitespace-nowrap">ruhaan@RUHAAN_OS:~$</span>
@@ -345,7 +345,7 @@ export default function Terminal({ onNavigate }: { onNavigate: (page: string) =>
                 setInput("");
               }
             }}
-            className="flex-1 bg-transparent outline-none border-none text-[#00ff88] caret-[#00ff88] font-mono text-base"
+            className="flex-1 bg-transparent outline-none border-none text-[#00ff88] caret-[#00ff88] font-mono text-sm sm:text-base"
             autoComplete="off"
             spellCheck={false}
           />

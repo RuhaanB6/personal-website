@@ -62,19 +62,19 @@ export default function BlogWindow({ onClose }: { onClose: () => void }) {
       style={{ background: "rgba(0,0,0,0.96)" }}
     >
       {/* Header */}
-      <div className="flex items-center justify-between px-6 py-4 border-b border-[#00ff88] flex-shrink-0 bg-black/40 backdrop-blur-sm">
+      <div className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 border-b border-[#00ff88] flex-shrink-0 bg-black/40 backdrop-blur-sm">
         <div className="flex items-center gap-4">
-          <span className="text-[#00ff88] text-lg tracking-[0.2em] font-bold">
+          <span className="text-[#00ff88] text-base sm:text-lg tracking-[0.2em] font-bold">
             // LOG_FILES
           </span>
         </div>
-        <div className="flex items-center gap-6">
-          <span className="text-[#006633] text-xs tracking-[0.2em] hidden md:inline">
+        <div className="flex items-center gap-4 sm:gap-6">
+          <span className="text-[#006633] text-[10px] sm:text-xs tracking-[0.2em] hidden md:inline">
             ESC TO EXIT
           </span>
           <button
             onClick={onClose}
-            className="text-[#00ff88] border border-[#00ff88] px-3 py-1 text-sm tracking-widest hover:bg-[#00ff88] hover:text-black transition-all duration-200 cursor-pointer"
+            className="text-[#00ff88] border border-[#00ff88] px-2 sm:px-3 py-1 text-xs sm:text-sm tracking-widest hover:bg-[#00ff88] hover:text-black transition-all duration-200 cursor-pointer whitespace-nowrap"
           >
             [X] CLOSE
           </button>
@@ -82,25 +82,25 @@ export default function BlogWindow({ onClose }: { onClose: () => void }) {
       </div>
 
       {/* Content */}
-      <div className="flex-grow flex flex-col items-center justify-center p-6 text-center">
-        <div className="flex flex-col gap-6 max-w-md border border-[#003322] p-12 bg-black/40 relative">
+      <div className="flex-grow flex flex-col items-center justify-center p-4 sm:p-6 text-center">
+        <div className="flex flex-col gap-4 sm:gap-6 w-full max-w-md border border-[#003322] p-8 sm:p-12 bg-black/40 relative">
           {/* Corner accents */}
           <div className="absolute -top-1 -left-1 w-2 h-2 bg-[#00ff88]" />
           <div className="absolute -bottom-1 -right-1 w-2 h-2 bg-[#00ff88]" />
           
-          <h2 className="text-[#00ff88] text-2xl tracking-[0.3em] font-bold uppercase">
+          <h2 className="text-[#00ff88] text-xl sm:text-2xl tracking-[0.3em] font-bold uppercase">
             In Production
           </h2>
           
           <div className="h-px w-full bg-[#003322]" />
           
-          <p className="text-[#00aa55] text-sm tracking-widest leading-relaxed uppercase">
+          <p className="text-[#00aa55] text-xs sm:text-sm tracking-widest leading-relaxed uppercase">
             The blog subsystem is currently undergoing maintenance and content decryption. 
             Full archives will be accessible shortly.
           </p>
           
-          <div className="mt-4 flex flex-col items-center gap-2">
-            <span className="text-[#003322] text-[10px] tracking-[0.5em] uppercase">
+          <div className="mt-2 sm:mt-4 flex flex-col items-center gap-2">
+            <span className="text-[#003322] text-[8px] sm:text-[10px] tracking-[0.5em] uppercase">
               Waiting for uplink...
             </span>
           </div>

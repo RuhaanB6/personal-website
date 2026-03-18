@@ -12,7 +12,7 @@ export default function ResumeWindow({ onClose }: { onClose: () => void }) {
         onClose();
         return;
       }
-      
+
       // Only handle 1 and 2 if not loading
       if (!loading) {
         if (e.key === "1") {
@@ -24,7 +24,7 @@ export default function ResumeWindow({ onClose }: { onClose: () => void }) {
         }
       }
     };
-    
+
     window.addEventListener("keydown", handler);
 
     // Loading sequence
@@ -77,19 +77,19 @@ export default function ResumeWindow({ onClose }: { onClose: () => void }) {
       style={{ background: "rgba(0,0,0,0.96)" }}
     >
       {/* Header */}
-      <div className="flex items-center justify-between px-6 py-4 border-b border-[#00ff88] flex-shrink-0 bg-black/40 backdrop-blur-sm">
+      <div className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 border-b border-[#00ff88] flex-shrink-0 bg-black/40 backdrop-blur-sm">
         <div className="flex items-center gap-4">
-          <span className="text-[#00ff88] text-lg tracking-[0.2em] font-bold">
+          <span className="text-[#00ff88] text-base sm:text-lg tracking-[0.2em] font-bold">
             // RESUME_SELECTION
           </span>
         </div>
-        <div className="flex items-center gap-6">
-          <span className="text-[#006633] text-xs tracking-[0.2em] hidden md:inline">
+        <div className="flex items-center gap-4 sm:gap-6">
+          <span className="text-[#006633] text-[10px] sm:text-xs tracking-[0.2em] hidden md:inline">
             ESC TO EXIT
           </span>
           <button
             onClick={onClose}
-            className="text-[#00ff88] border border-[#00ff88] px-3 py-1 text-sm tracking-widest hover:bg-[#00ff88] hover:text-black transition-all duration-200 cursor-pointer"
+            className="text-[#00ff88] border border-[#00ff88] px-2 sm:px-3 py-1 text-xs sm:text-sm tracking-widest hover:bg-[#00ff88] hover:text-black transition-all duration-200 cursor-pointer whitespace-nowrap"
           >
             [X] CLOSE
           </button>
@@ -97,26 +97,26 @@ export default function ResumeWindow({ onClose }: { onClose: () => void }) {
       </div>
 
       {/* Content */}
-      <div className="flex-grow flex flex-col items-center justify-center p-6 gap-8">
-        <div className="text-[#00ff88] text-sm tracking-[0.3em] uppercase opacity-60 mb-4">
+      <div className="flex-grow flex flex-col items-center justify-center p-4 sm:p-6 gap-6 sm:gap-8 overflow-y-auto custom-scrollbar">
+        <div className="text-[#00ff88] text-xs sm:text-sm tracking-[0.3em] uppercase opacity-60 mb-2 sm:mb-4 text-center">
           Select document type to access:
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-2xl">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8 w-full max-w-2xl">
           {/* CS Resume Option */}
           <a
             href="/CS_RESUME.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex flex-col items-center gap-6 p-10 border border-[#003322] hover:border-[#00ff88] transition-all duration-300 bg-black/40 relative overflow-hidden"
+            className="group flex flex-col items-center gap-4 sm:gap-6 p-6 sm:p-10 border border-[#003322] hover:border-[#00ff88] transition-all duration-300 bg-black/40 relative overflow-hidden"
           >
             {/* Keyboard shortcut indicator */}
-            <div className="absolute top-4 left-4 text-[#006633] text-[10px] tracking-widest group-hover:text-[#00ff88] transition-colors">
+            <div className="absolute top-2 sm:top-4 left-2 sm:left-4 text-[#006633] text-[8px] sm:text-[10px] tracking-widest group-hover:text-[#00ff88] transition-colors">
               [ KEY: 1 ]
             </div>
 
             <div className="text-[#00ff88] group-hover:scale-110 transition-transform duration-300 mt-2">
-              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" className="sm:w-12 sm:h-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                 <polyline points="14 2 14 8 20 8"></polyline>
                 <line x1="16" y1="13" x2="8" y2="13"></line>
@@ -124,13 +124,13 @@ export default function ResumeWindow({ onClose }: { onClose: () => void }) {
                 <polyline points="10 9 9 9 8 9"></polyline>
               </svg>
             </div>
-            
-            <div className="flex flex-col items-center gap-2">
-              <span className="text-[#00ff88] text-xl tracking-[0.2em] font-bold uppercase">CS_RESUME</span>
-              <span className="text-[#006633] text-[10px] tracking-widest uppercase">SWE / Systems / AI</span>
+
+            <div className="flex flex-col items-center gap-1 sm:gap-2">
+              <span className="text-[#00ff88] text-lg sm:text-xl tracking-[0.2em] font-bold uppercase text-center">CS_RESUME</span>
+              <span className="text-[#006633] text-[8px] sm:text-[10px] tracking-widest uppercase text-center">SWE / Systems / AI</span>
             </div>
 
-            <div className="text-[#00aa55] text-xs tracking-widest border border-[#003322] px-4 py-2 group-hover:bg-[#00ff88] group-hover:text-black transition-colors duration-200 font-bold">
+            <div className="text-[#00aa55] text-[10px] sm:text-xs tracking-widest border border-[#003322] px-3 sm:px-4 py-1.5 sm:py-2 group-hover:bg-[#00ff88] group-hover:text-black transition-colors duration-200 font-bold">
               [ ACCESS_FILE ]
             </div>
           </a>
@@ -140,15 +140,15 @@ export default function ResumeWindow({ onClose }: { onClose: () => void }) {
             href="/QUANT_RESUME.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex flex-col items-center gap-6 p-10 border border-[#003322] hover:border-[#00ff88] transition-all duration-300 bg-black/40 relative overflow-hidden"
+            className="group flex flex-col items-center gap-4 sm:gap-6 p-6 sm:p-10 border border-[#003322] hover:border-[#00ff88] transition-all duration-300 bg-black/40 relative overflow-hidden"
           >
             {/* Keyboard shortcut indicator */}
-            <div className="absolute top-4 left-4 text-[#006633] text-[10px] tracking-widest group-hover:text-[#00ff88] transition-colors">
+            <div className="absolute top-2 sm:top-4 left-2 sm:left-4 text-[#006633] text-[8px] sm:text-[10px] tracking-widest group-hover:text-[#00ff88] transition-colors">
               [ KEY: 2 ]
             </div>
 
             <div className="text-[#00ff88] group-hover:scale-110 transition-transform duration-300 mt-2">
-              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" className="sm:w-12 sm:h-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                 <polyline points="14 2 14 8 20 8"></polyline>
                 <line x1="16" y1="13" x2="8" y2="13"></line>
@@ -157,18 +157,18 @@ export default function ResumeWindow({ onClose }: { onClose: () => void }) {
               </svg>
             </div>
 
-            <div className="flex flex-col items-center gap-2">
-              <span className="text-[#00ff88] text-xl tracking-[0.2em] font-bold uppercase">QUANT_RESUME</span>
-              <span className="text-[#006633] text-[10px] tracking-widest uppercase">Finance / Math / Trading</span>
+            <div className="flex flex-col items-center gap-1 sm:gap-2">
+              <span className="text-[#00ff88] text-lg sm:text-xl tracking-[0.2em] font-bold uppercase text-center">QUANT_RESUME</span>
+              <span className="text-[#006633] text-[8px] sm:text-[10px] tracking-widest uppercase text-center">Finance / Math / Trading</span>
             </div>
 
-            <div className="text-[#00aa55] text-xs tracking-widest border border-[#003322] px-4 py-2 group-hover:bg-[#00ff88] group-hover:text-black transition-colors duration-200 font-bold">
+            <div className="text-[#00aa55] text-[10px] sm:text-xs tracking-widest border border-[#003322] px-3 sm:px-4 py-1.5 sm:py-2 group-hover:bg-[#00ff88] group-hover:text-black transition-colors duration-200 font-bold">
               [ ACCESS_FILE ]
             </div>
           </a>
         </div>
 
-        <div className="mt-12 text-[#003322] text-[10px] tracking-[0.4em] uppercase">
+        <div className="mt-4 sm:mt-8 text-[#003322] text-[8px] sm:text-[10px] tracking-[0.4em] uppercase text-center">
           Waiting for operator selection...
         </div>
       </div>
