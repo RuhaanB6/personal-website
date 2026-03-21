@@ -10,9 +10,6 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "RUHAAN_OS",
   description: "Ruhaan's Personal portfolio.",
-  icons: {
-    icon: "/favicon.ico",
-  },
 };
 
 export default function RootLayout({
