@@ -278,7 +278,7 @@ export default function Terminal({ onNavigate }: { onNavigate: (page: string) =>
     >
       {/* Header */}
       <div className="p-4 pb-2">
-        <h2 className="text-[#00ff88] font-mono text-xs sm:text-sm tracking-wider opacity-80">
+        <h2 className="text-crt-green font-mono text-xs sm:text-sm tracking-wider opacity-80">
           // TERMINAL
         </h2>
       </div>
@@ -287,7 +287,7 @@ export default function Terminal({ onNavigate }: { onNavigate: (page: string) =>
       <div 
         className="flex-grow overflow-y-auto px-4 pb-2 font-mono text-sm sm:text-base text-[#00ff88] leading-relaxed custom-scrollbar overflow-x-hidden"
         style={{ 
-          textShadow: "2px 2px 0px #000, -2px -2px 0px #000, 2px -2px 0px #000, -2px 2px 0px #000, 0px 0px 8px rgba(0,255,136,0.6)",
+          textShadow: "1px 1px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000, 0px 0px 6px rgba(5,255,161,0.5)",
           color: "#05ffa1" 
         }}
       >
@@ -300,7 +300,7 @@ export default function Terminal({ onNavigate }: { onNavigate: (page: string) =>
             <div
               key={i}
               className={`${isCommandOutput ? "text-[#00cc66]" : "text-[#05ffa1]"} break-words whitespace-pre-wrap`}
-              style={{ textShadow: "2px 2px 0px #000, -2px -2px 0px #000, 2px -2px 0px #000, -2px 2px 0px #000, 0px 0px 8px rgba(0,255,136,0.5)" }}
+              style={{ textShadow: "1px 1px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000, 0px 0px 6px rgba(5,255,161,0.4)" }}
             >
               {line === "" ? (
                 <br />
@@ -336,7 +336,7 @@ export default function Terminal({ onNavigate }: { onNavigate: (page: string) =>
       {!booting && (
         <div 
           className="px-4 py-3 border-t border-[#003322] flex items-center gap-2 font-mono text-sm sm:text-base text-[#05ffa1]"
-          style={{ textShadow: "2px 2px 0px #000, -2px -2px 0px #000, 2px -2px 0px #000, -2px 2px 0px #000, 0px 0px 8px rgba(0,255,136,0.5)" }}
+          style={{ textShadow: "1px 1px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000, 0px 0px 6px rgba(0,255,136,0.4)" }}
         >
           <span className="opacity-70 whitespace-nowrap">ruhaan@RUHAAN_OS:~$</span>
           <input
@@ -352,7 +352,7 @@ export default function Terminal({ onNavigate }: { onNavigate: (page: string) =>
             className="flex-1 bg-transparent outline-none border-none text-[#05ffa1] caret-[#05ffa1] font-mono text-sm sm:text-base"
             autoComplete="off"
             spellCheck={false}
-            style={{ textShadow: "2px 2px 0px #000, -2px -2px 0px #000, 2px -2px 0px #000, -2px 2px 0px #000, 0px 0px 8px rgba(0,255,136,0.5)" }}
+            style={{ textShadow: "1px 1px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000, 0px 0px 6px rgba(0,255,136,0.4)" }}
           />
         </div>
       )}

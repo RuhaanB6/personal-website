@@ -5,7 +5,7 @@ export default function Catalogue({ onNavigate }: { onNavigate: (page: string) =
 
   const navItemClass = "group cursor-pointer flex items-center gap-2 border-l-2 border-transparent hover:border-crt-green hover:pl-2 transition-all duration-150";
 
-  const textShadowStyle = { textShadow: "2px 2px 0px #000, -2px -2px 0px #000, 2px -2px 0px #000, -2px 2px 0px #000, 0px 0px 8px rgba(0,255,136,0.5)" };
+  const textShadowStyle = { textShadow: "1px 1px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000, 0px 0px 6px rgba(5,255,161,0.4)" };
 
   return (
     <div className="flex flex-col h-full border-r border-crt-green p-4 sm:p-6 overflow-y-auto custom-scrollbar" style={textShadowStyle}>

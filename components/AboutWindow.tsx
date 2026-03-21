@@ -56,24 +56,24 @@ export default function AboutWindow({ onClose }: { onClose: () => void }) {
         style={{ background: "rgba(0,0,0,0.98)" }}
       >
         <div className="flex flex-col gap-4 w-64">
-          <div className="flex justify-between text-[#00ff88] text-xs tracking-widest">
+        <div className="flex justify-between text-crt-green text-xs tracking-widest">
             <span>INITIALIZING PROFILE...</span>
             <span>{progress}%</span>
           </div>
           <div className="h-1 w-full border border-[#003322] bg-black overflow-hidden relative">
             <div 
-              className="h-full bg-[#00ff88] transition-all duration-75 ease-out shadow-[0_0_10px_#00ff88]"
+              className="h-full bg-crt-green transition-all duration-75 ease-out shadow-[0_0_10px_#05ffa1]"
               style={{ width: `${progress}%` }}
             />
           </div>
           <div className="flex flex-col gap-1">
-            <span className="text-[#006633] text-[10px] tracking-widest uppercase">
+            <span className="text-crt-dim text-[10px] tracking-widest uppercase">
               {progress > 20 ? "> MOUNTING DATA_FILES" : ""}
             </span>
-            <span className="text-[#006633] text-[10px] tracking-widest uppercase">
+            <span className="text-crt-dim text-[10px] tracking-widest uppercase">
               {progress > 50 ? "> DECRYPTING METADATA" : ""}
             </span>
-            <span className="text-[#006633] text-[10px] tracking-widest uppercase">
+            <span className="text-crt-dim text-[10px] tracking-widest uppercase">
               {progress > 85 ? "> RENDER_BUFFER_READY" : ""}
             </span>
           </div>
@@ -85,25 +85,28 @@ export default function AboutWindow({ onClose }: { onClose: () => void }) {
   return (
     <div
       className="absolute inset-0 z-40 flex flex-col font-mono overflow-hidden animate-in fade-in zoom-in-95 duration-500"
-      style={{ background: "rgba(0,0,0,0.96)" }}
+      style={{ 
+        background: "rgba(0,0,0,0.96)",
+        textShadow: "1px 1px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000, 0px 0px 6px rgba(5,255,161,0.4)"
+      }}
     >
       {/* Header */}
-      <div className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 border-b border-[#00ff88] flex-shrink-0 bg-black/40 backdrop-blur-sm">
+      <div className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 border-b border-crt-green flex-shrink-0 bg-black/40 backdrop-blur-sm">
         <div className="flex items-center gap-4">
-          <span className="text-[#00ff88] text-base sm:text-lg tracking-[0.2em] font-bold">
+          <span className="text-crt-green text-base sm:text-lg tracking-[0.2em] font-bold">
             // ABOUT
           </span>
-          <span className="text-[#006633] text-xs sm:text-sm tracking-widest hidden sm:inline">
+          <span className="text-crt-dim text-xs sm:text-sm tracking-widest hidden sm:inline">
             OPERATOR: RUHAAN BHARGAV
           </span>
         </div>
         <div className="flex items-center gap-4 sm:gap-6">
-          <span className="text-[#006633] text-[10px] sm:text-xs tracking-[0.2em] hidden md:inline">
+          <span className="text-crt-dim text-[10px] sm:text-xs tracking-[0.2em] hidden md:inline">
             ESC TO EXIT
           </span>
           <button
             onClick={onClose}
-            className="text-[#00ff88] border border-[#00ff88] px-2 sm:px-3 py-1 text-xs sm:text-sm tracking-widest hover:bg-[#00ff88] hover:text-black transition-all duration-200 cursor-pointer whitespace-nowrap"
+            className="text-crt-green border border-crt-green px-2 sm:px-3 py-1 text-xs sm:text-sm tracking-widest hover:bg-crt-green hover:text-black transition-all duration-200 cursor-pointer whitespace-nowrap"
           >
             [X] CLOSE
           </button>
@@ -119,11 +122,11 @@ export default function AboutWindow({ onClose }: { onClose: () => void }) {
           {/* Three sections */}
           {ABOUT_SECTIONS.map((section) => (
             <div key={section.label} className="flex flex-col gap-3 sm:gap-4">
-              <span className="text-[#00ff88] text-[10px] sm:text-xs tracking-[0.25em] opacity-80">
+              <span className="text-crt-green text-[10px] sm:text-xs tracking-[0.25em] opacity-80">
                 {section.label}
               </span>
               <div className="flex flex-col gap-1 pl-4 border-l border-[#003322]">
-                <p className="text-[#00aa55] text-sm sm:text-base md:text-lg tracking-wide leading-relaxed">
+                <p className="text-crt-dim text-sm sm:text-base md:text-lg tracking-wide leading-relaxed">
                   {section.content}
                 </p>
               </div>
