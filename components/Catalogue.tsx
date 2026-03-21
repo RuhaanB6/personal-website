@@ -5,10 +5,12 @@ export default function Catalogue({ onNavigate }: { onNavigate: (page: string) =
 
   const navItemClass = "group cursor-pointer flex items-center gap-2 border-l-2 border-transparent hover:border-crt-green hover:pl-2 transition-all duration-150";
 
+  const textShadowStyle = { textShadow: "2px 2px 0px #000, -2px -2px 0px #000, 2px -2px 0px #000, -2px 2px 0px #000, 0px 0px 8px rgba(0,255,136,0.5)" };
+
   return (
-    <div className="flex flex-col h-full border-r border-crt-green p-4 sm:p-6 overflow-y-auto custom-scrollbar">
+    <div className="flex flex-col h-full border-r border-crt-green p-4 sm:p-6 overflow-y-auto custom-scrollbar" style={textShadowStyle}>
       <div className="mb-4 sm:mb-6">
-        <h2 className="text-crt-green font-mono text-xs sm:text-sm tracking-wider opacity-80 uppercase">
+        <h2 className="text-crt-green font-mono text-xs sm:text-sm tracking-wider opacity-90 uppercase">
           // CATALOGUE
         </h2>
       </div>
@@ -92,7 +94,7 @@ export default function Catalogue({ onNavigate }: { onNavigate: (page: string) =
             INTERESTS:
           </h2>
           <div className="text-crt-green uppercase tracking-widest text-sm sm:text-base leading-relaxed flex flex-col gap-0.5">
-            {["> QUANT FINANCE", "> PHYSICS", "> CHESS", "> PHOTOGRAPHY", "> READING"].map((interest) => (
+            {["+ QUANT FINANCE", "+ PHYSICS", "+ CHESS", "+ PHOTOGRAPHY", "+ READING"].map((interest) => (
               <p key={interest}>{interest}</p>
             ))}
           </div>

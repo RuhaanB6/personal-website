@@ -286,7 +286,10 @@ export default function Terminal({ onNavigate }: { onNavigate: (page: string) =>
       {/* Output */}
       <div 
         className="flex-grow overflow-y-auto px-4 pb-2 font-mono text-sm sm:text-base text-[#00ff88] leading-relaxed custom-scrollbar overflow-x-hidden"
-        style={{ textShadow: "3px 3px 6px rgba(0,0,0,1), 0 0 10px rgba(0,0,0,1)" }}
+        style={{ 
+          textShadow: "2px 2px 0px #000, -2px -2px 0px #000, 2px -2px 0px #000, -2px 2px 0px #000, 0px 0px 8px rgba(0,255,136,0.6)",
+          color: "#05ffa1" 
+        }}
       >
         {lines.map((line, i) => {
           const isGitHub = line.includes("github.com/RuhaanB6");
@@ -296,7 +299,8 @@ export default function Terminal({ onNavigate }: { onNavigate: (page: string) =>
           return (
             <div
               key={i}
-              className={`${isCommandOutput ? "text-[#00aa55]" : "text-[#00ff88]"} break-words whitespace-pre-wrap`}
+              className={`${isCommandOutput ? "text-[#00cc66]" : "text-[#05ffa1]"} break-words whitespace-pre-wrap`}
+              style={{ textShadow: "2px 2px 0px #000, -2px -2px 0px #000, 2px -2px 0px #000, -2px 2px 0px #000, 0px 0px 8px rgba(0,255,136,0.5)" }}
             >
               {line === "" ? (
                 <br />
@@ -322,7 +326,7 @@ export default function Terminal({ onNavigate }: { onNavigate: (page: string) =>
 
         {/* Blinking cursor during boot */}
         {booting && (
-          <span className="inline-block w-2 h-4 bg-[#00ff88] cursor-blink align-middle ml-1" />
+          <span className="inline-block w-2 h-4 bg-[#05ffa1] cursor-blink align-middle ml-1 shadow-[0_0_10px_#00ff88]" />
         )}
 
         <div ref={bottomRef} />
@@ -331,8 +335,8 @@ export default function Terminal({ onNavigate }: { onNavigate: (page: string) =>
       {/* Input */}
       {!booting && (
         <div 
-          className="px-4 py-3 border-t border-[#003322] flex items-center gap-2 font-mono text-sm sm:text-base text-[#00ff88]"
-          style={{ textShadow: "2px 2px 4px rgba(0,0,0,0.8)" }}
+          className="px-4 py-3 border-t border-[#003322] flex items-center gap-2 font-mono text-sm sm:text-base text-[#05ffa1]"
+          style={{ textShadow: "2px 2px 0px #000, -2px -2px 0px #000, 2px -2px 0px #000, -2px 2px 0px #000, 0px 0px 8px rgba(0,255,136,0.5)" }}
         >
           <span className="opacity-70 whitespace-nowrap">ruhaan@RUHAAN_OS:~$</span>
           <input
@@ -345,9 +349,10 @@ export default function Terminal({ onNavigate }: { onNavigate: (page: string) =>
                 setInput("");
               }
             }}
-            className="flex-1 bg-transparent outline-none border-none text-[#00ff88] caret-[#00ff88] font-mono text-sm sm:text-base"
+            className="flex-1 bg-transparent outline-none border-none text-[#05ffa1] caret-[#05ffa1] font-mono text-sm sm:text-base"
             autoComplete="off"
             spellCheck={false}
+            style={{ textShadow: "2px 2px 0px #000, -2px -2px 0px #000, 2px -2px 0px #000, -2px 2px 0px #000, 0px 0px 8px rgba(0,255,136,0.5)" }}
           />
         </div>
       )}

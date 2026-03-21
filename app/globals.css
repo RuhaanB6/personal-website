@@ -2,14 +2,14 @@
 
 @theme {
   --font-mono: var(--font-jetbrains-mono), monospace;
-  --color-crt-green: #00ff88;
-  --color-crt-dim: #00aa55;
+  --color-crt-green: #05ffa1;
+  --color-crt-dim: #00cc66;
   --color-bezel: #1a1a1a;
 }
 
 :root {
   --background: #000000;
-  --foreground: #00ff88;
+  --foreground: #05ffa1;
 }
 
 body {

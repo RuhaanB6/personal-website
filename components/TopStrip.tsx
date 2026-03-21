@@ -19,8 +19,13 @@ export default function TopStrip() {
     return `${h.toString().padStart(3, "0")}:${m.toString().padStart(2, "0")}:${s.toString().padStart(2, "0")}`;
   };
 
+  const textShadowStyle = { textShadow: "2px 2px 0px #000, -2px -2px 0px #000, 2px -2px 0px #000, -2px 2px 0px #000, 0px 0px 8px rgba(0,255,136,0.5)" };
+
   return (
-    <div className="w-full h-8 flex items-center justify-between px-6 text-xs-data text-crt-green font-mono whitespace-nowrap overflow-hidden">
+    <div 
+      className="w-full h-8 flex items-center justify-between px-6 text-xs-data text-crt-green font-mono whitespace-nowrap overflow-hidden"
+      style={textShadowStyle}
+    >
       <div className="flex items-center gap-4">
         <span>RUHAAN_OS v1.0</span>
         <span className="opacity-50 hidden md:inline">═══</span>
