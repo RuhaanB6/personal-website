@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const DIVIDER = "────────────────────────────────────";
+const DIVIDER = "────────────────────────────────────────────";
 
 const WELCOME = [
   DIVIDER,
@@ -297,7 +297,7 @@ export default function Terminal({ onNavigate }: { onNavigate: (page: string) =>
                                   line.startsWith("  LOADING");
           
           return (
-            <div
+            <pre
               key={i}
               className={`${isCommandOutput ? "text-[#00cc66]" : "text-[#05ffa1]"} break-words whitespace-pre-wrap`}
               style={{ textShadow: "1px 1px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000, 0px 0px 6px rgba(5,255,161,0.4)" }}
@@ -320,7 +320,7 @@ export default function Terminal({ onNavigate }: { onNavigate: (page: string) =>
               ) : (
                 line
               )}
-            </div>
+            </pre>
           );
         })}
 
