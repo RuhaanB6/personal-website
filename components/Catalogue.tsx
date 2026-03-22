@@ -43,7 +43,7 @@ export default function Catalogue({ onNavigate }: { onNavigate: (page: string) =
             {">"}
           </span>
           <span className="text-crt-dim group-hover:text-crt-green uppercase tracking-widest text-sm sm:text-base transition-colors duration-150">
-            GITHUB ↗
+            GITHUB
           </span>
         </a>
 
@@ -57,7 +57,7 @@ export default function Catalogue({ onNavigate }: { onNavigate: (page: string) =
             {">"}
           </span>
           <span className="text-crt-dim group-hover:text-crt-green uppercase tracking-widest text-sm sm:text-base transition-colors duration-150">
-            LINKEDIN ↗
+            LINKEDIN
           </span>
         </a>
 
@@ -71,7 +71,7 @@ export default function Catalogue({ onNavigate }: { onNavigate: (page: string) =
             {">"}
           </span>
           <span className="text-crt-dim group-hover:text-crt-green uppercase tracking-widest text-sm sm:text-base transition-colors duration-150">
-            EMAIL ME ↗
+            EMAIL ME
           </span>
         </a>
       </div>
