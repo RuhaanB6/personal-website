@@ -124,7 +124,7 @@ export default function PhotosWindow({ onClose }: { onClose: () => void }) {
           </span>
           <button
             onClick={onClose}
-            className="text-crt-green border border-crt-green px-2 sm:px-3 py-1 text-xs sm:text-sm tracking-widest hover:bg-crt-green hover:text-black transition-all duration-200 whitespace-nowrap"
+            className="text-crt-green border border-crt-green px-2 sm:px-3 py-1 text-xs sm:text-sm tracking-widest hover:bg-crt-green hover:text-black hover:[text-shadow:none] transition-all duration-200 whitespace-nowrap"
           >
             [X] CLOSE
           </button>
@@ -156,7 +156,7 @@ export default function PhotosWindow({ onClose }: { onClose: () => void }) {
           href="https://www.instagram.com/ruhaanb.jpg/"
           target="_blank"
           rel="noopener noreferrer"
-          className="w-full sm:w-auto text-center text-crt-green border border-crt-green px-4 sm:px-8 py-2.5 sm:py-3 text-[10px] sm:text-xs tracking-[0.3em] font-bold hover:bg-crt-green hover:text-black transition-all duration-300 shadow-[0_0_15px_rgba(5,255,161,0.1)] hover:shadow-[0_0_20px_rgba(5,255,161,0.3)]"
+          className="w-full sm:w-auto text-center text-crt-green border border-crt-green px-4 sm:px-8 py-2.5 sm:py-3 text-[10px] sm:text-xs tracking-[0.3em] font-bold hover:bg-crt-green hover:text-black hover:[text-shadow:none] transition-all duration-300 shadow-[0_0_15px_rgba(5,255,161,0.1)] hover:shadow-[0_0_20px_rgba(5,255,161,0.3)]"
         >
           [ ACCESS_INSTAGRAM_DATABASE ]
         </a>

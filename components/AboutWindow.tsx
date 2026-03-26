@@ -106,7 +106,7 @@ export default function AboutWindow({ onClose }: { onClose: () => void }) {
           </span>
           <button
             onClick={onClose}
-            className="text-crt-green border border-crt-green px-2 sm:px-3 py-1 text-xs sm:text-sm tracking-widest hover:bg-crt-green hover:text-black transition-all duration-200 cursor-pointer whitespace-nowrap"
+            className="text-crt-green border border-crt-green px-2 sm:px-3 py-1 text-xs sm:text-sm tracking-widest hover:bg-crt-green hover:text-black hover:[text-shadow:none] transition-all duration-200 cursor-pointer whitespace-nowrap"
           >
             [X] CLOSE
           </button>

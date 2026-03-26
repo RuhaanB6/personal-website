@@ -92,7 +92,7 @@ export default function ResumeWindow({ onClose }: { onClose: () => void }) {
           </span>
           <button
             onClick={onClose}
-            className="text-crt-green border border-crt-green px-2 sm:px-3 py-1 text-xs sm:text-sm tracking-widest hover:bg-crt-green hover:text-black transition-all duration-200 cursor-pointer whitespace-nowrap"
+            className="text-crt-green border border-crt-green px-2 sm:px-3 py-1 text-xs sm:text-sm tracking-widest hover:bg-crt-green hover:text-black hover:[text-shadow:none] transition-all duration-200 cursor-pointer whitespace-nowrap"
           >
             [X] CLOSE
           </button>
@@ -133,7 +133,7 @@ export default function ResumeWindow({ onClose }: { onClose: () => void }) {
               <span className="text-crt-dim text-[8px] sm:text-[10px] tracking-widest uppercase text-center">SWE / Systems / AI</span>
             </div>
 
-            <div className="text-crt-dim text-[10px] sm:text-xs tracking-widest border border-[#003322] px-3 sm:px-4 py-1.5 sm:py-2 group-hover:bg-crt-green group-hover:text-black transition-colors duration-200 font-bold">
+            <div className="text-crt-dim text-[10px] sm:text-xs tracking-widest border border-[#003322] px-3 sm:px-4 py-1.5 sm:py-2 group-hover:bg-crt-green group-hover:text-black group-hover:[text-shadow:none] transition-colors duration-200 font-bold">
               [ ACCESS_FILE ]
             </div>
           </a>
@@ -165,7 +165,7 @@ export default function ResumeWindow({ onClose }: { onClose: () => void }) {
               <span className="text-crt-dim text-[8px] sm:text-[10px] tracking-widest uppercase text-center">Finance / Math / Trading</span>
             </div>
 
-            <div className="text-crt-dim text-[10px] sm:text-xs tracking-widest border border-[#003322] px-3 sm:px-4 py-1.5 sm:py-2 group-hover:bg-crt-green group-hover:text-black transition-colors duration-200 font-bold">
+            <div className="text-crt-dim text-[10px] sm:text-xs tracking-widest border border-[#003322] px-3 sm:px-4 py-1.5 sm:py-2 group-hover:bg-crt-green group-hover:text-black group-hover:[text-shadow:none] transition-colors duration-200 font-bold">
               [ ACCESS_FILE ]
             </div>
           </a>

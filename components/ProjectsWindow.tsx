@@ -88,7 +88,7 @@ export default function ProjectsWindow({ onClose }: { onClose: () => void }) {
           <span className="text-crt-dim text-[10px] sm:text-xs tracking-[0.2em] hidden md:inline">ESC TO EXIT</span>
           <button
             onClick={onClose}
-            className="text-crt-green border border-crt-green px-2 sm:px-3 py-1 text-xs sm:text-sm tracking-widest hover:bg-crt-green hover:text-black transition-all duration-200 cursor-pointer whitespace-nowrap"
+            className="text-crt-green border border-crt-green px-2 sm:px-3 py-1 text-xs sm:text-sm tracking-widest hover:bg-crt-green hover:text-black hover:[text-shadow:none] transition-all duration-200 cursor-pointer whitespace-nowrap"
           >
             [X] CLOSE
           </button>
@@ -176,7 +176,7 @@ export default function ProjectsWindow({ onClose }: { onClose: () => void }) {
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 sm:flex-none text-center text-crt-dim border border-crt-dim px-3 sm:px-4 py-1.5 text-[10px] sm:text-xs tracking-[0.2em] hover:bg-crt-dim hover:text-black transition-all duration-200 uppercase font-bold"
+                      className="flex-1 sm:flex-none text-center text-crt-dim border border-crt-dim px-3 sm:px-4 py-1.5 text-[10px] sm:text-xs tracking-[0.2em] hover:bg-crt-dim hover:text-black hover:[text-shadow:none] transition-all duration-200 uppercase font-bold"
                     >
                       SOURCE↗
                     </a>
@@ -190,7 +190,7 @@ export default function ProjectsWindow({ onClose }: { onClose: () => void }) {
                       href={project.live}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 sm:flex-none text-center text-crt-green border border-crt-green px-3 sm:px-4 py-1.5 text-[10px] sm:text-xs tracking-[0.2em] hover:bg-crt-green hover:text-black transition-all duration-200 uppercase font-bold shadow-[0_0_10px_rgba(5,255,161,0.1)]"
+                      className="flex-1 sm:flex-none text-center text-crt-green border border-crt-green px-3 sm:px-4 py-1.5 text-[10px] sm:text-xs tracking-[0.2em] hover:bg-crt-green hover:text-black hover:[text-shadow:none] transition-all duration-200 uppercase font-bold shadow-[0_0_10px_rgba(5,255,161,0.1)]"
                     >
                       DEPLOY↗
                     </a>
