@@ -19,6 +19,12 @@ body {
   overflow: hidden;
   height: 100vh;
   margin: 0;
+
+  /* Scrollbar customization */
+  overflow: scroll;
+  scrollbar-color: rgb(0,255,136) rgba(0,0,0,0);
+  scrollbar-width: thin;
+
 }
 
 /* CRT Screen Effect Overlay */

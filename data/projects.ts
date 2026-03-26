@@ -65,7 +65,7 @@ export const projects: Project[] = [
     tags: ["Next.js", "TypeScript", "Tailwind CSS", "Canvas API"],
     image: "/projects/ruhaan-os-demo.png",
     github: "https://github.com/RuhaanB6/personal-website",
-    live: "https://personal-website-three-rosy-41.vercel.app",
+    live: "https://ruhaan.dev",
     private: false,
     still_working: true,
   },
